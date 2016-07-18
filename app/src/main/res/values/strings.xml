@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Darker!</string>
+    <string name="action_settings">Settings</string>
+    <string name="banner">进一步降低屏幕亮度以在黑暗中保护您的眼睛</string>
+    <string name="brightness">亮度</string>
+    <string name="transparency">遮挡度</string>
+    <string name="filter_color">滤镜颜色</string>
+</resources>
