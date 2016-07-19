@@ -13,7 +13,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.amastigote.darker.MainActivity"
+    tools:context=".activity.MainActivity"
     tools:showIn="@layout/activity_main" >
 
     <TextView
@@ -26,5 +26,18 @@
         android:textSize="15sp"/>
 
     <include layout="@layout/control_panel" />
+
+    <ToggleButton
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/text_transparent_gray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/selector_turn_on_button"
+        android:textOn="@string/is_on"
+        android:textOff="@string/is_off"/>
 
 </LinearLayout>

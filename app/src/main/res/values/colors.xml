@@ -10,4 +10,7 @@
     <color name="black">#000000</color>
     <color name="text_tag_gray">#40838383</color>
     <color name="text_light_gray">#9c9c9c</color>
+    <color name="text_transparent_gray">#a49c9c9c</color>
+    <color name="toggle_button_off">#98700600</color>
+    <color name="toggle_button_on">#9800700b</color>
 </resources>
