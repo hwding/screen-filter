@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Darker!</string>
-    <string name="action_settings">Settings</string>
-    <string name="banner">进一步降低屏幕亮度以在黑暗中保护您的眼睛</string>
+    <string name="action_settings">Fork me on GitHub!</string>
+    <string name="banner">通过提高遮挡度，Darker!能够进一步降低屏幕亮度以在黑暗中保护您的眼睛</string>
     <string name="brightness">亮度</string>
     <string name="transparency">遮挡度</string>
     <string name="filter_color">滤镜颜色</string>
     <string name="is_off">滤镜未开启 :(</string>
     <string name="is_on">滤镜已开启 :)</string>
+    <string name="restore">恢复推荐配置</string>
+    <string name="enable_filter">启用颜色</string>
 </resources>

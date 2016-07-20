@@ -1,111 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center_horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="20dp"
     android:orientation="vertical">
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="50dp">
         <TextView
+            android:textStyle="bold"
             android:textColor="@color/text_light_gray"
             android:padding="2dp"
             android:background="@drawable/shape_text_tag"
             android:gravity="center_horizontal"
-            android:layout_marginEnd="20dp"
             android:textSize="14sp"
             android:layout_gravity="center_vertical"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/brightness"/>
-        <SeekBar
-            android:layout_gravity="center_vertical"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="@color/text_light_gray"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20%"/>
+        <io.feeeei.circleseekbar.CircleSeekBar
+            app:wheel_cur_process="0"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:wheel_max_process="100"
+            app:wheel_reached_color="@color/text_transparent_gray"
+            app:wheel_unreached_color="@color/text_transparent_more_gray"
+            app:wheel_reached_width="10dp"
+            app:wheel_unreached_width="10dp"
+            app:wheel_can_touch="true"
+            app:wheel_pointer_radius="10dp" />
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <TextView
+            android:textStyle="bold"
             android:textColor="@color/text_light_gray"
             android:padding="2dp"
             android:background="@drawable/shape_text_tag"
             android:gravity="center_horizontal"
-            android:layout_marginEnd="20dp"
             android:textSize="14sp"
             android:layout_gravity="center_vertical"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/transparency"/>
-        <SeekBar
-            android:layout_gravity="center_vertical"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textColor="@color/text_light_gray"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20%"/>
+        <io.feeeei.circleseekbar.CircleSeekBar
+            app:wheel_cur_process="70"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:wheel_max_process="100"
+            app:wheel_reached_color="@color/text_transparent_gray"
+            app:wheel_unreached_color="@color/text_transparent_more_gray"
+            app:wheel_reached_width="10dp"
+            app:wheel_unreached_width="10dp"
+            app:wheel_can_touch="true"
+            app:wheel_pointer_radius="10dp" />
+    </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <TextView
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/text_light_gray"
             android:padding="2dp"
             android:background="@drawable/shape_text_tag"
             android:gravity="center_horizontal"
-            android:layout_marginEnd="20dp"
             android:textSize="14sp"
-            android:layout_gravity="center_vertical"
-            android:layout_width="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/filter_color"/>
-        <LinearLayout
-            android:layout_marginStart="10dp"
-            android:layout_gravity="center_vertical"
+        <Switch
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@color/yellow"/>
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@color/red"/>
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@color/brown"/>
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@color/gray"/>
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@color/black"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/enable_filter"
+            android:textColor="@color/text_light_gray"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"/>
+        <com.rtugeek.android.colorseekbar.ColorSeekBar
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:colors="@array/material_colors"
+            app:barHeight="4dp"
+            app:thumbHeight="30dp" />
     </LinearLayout>
 </LinearLayout>

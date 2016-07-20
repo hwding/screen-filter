@@ -1,12 +1,16 @@
 package com.amastigote.darker.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ToggleButton;
 
 import com.amastigote.darker.R;
+import com.amastigote.darker.service.ScreenFilterService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("make it darker!");
         setSupportActionBar(toolbar);
 
+        final ToggleButton toggleButton = (ToggleButton) findViewById(R.id.cm_toggle_button);
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent(MainActivity.this, ScreenFilterService.class);
+
+            @Override
+            public void onClick(View view) {
+                if (!((ToggleButton) view).isChecked())
+                    startService(intent);
+                else
+                    stopService(intent);
+            }
+        });
     }
 
     @Override

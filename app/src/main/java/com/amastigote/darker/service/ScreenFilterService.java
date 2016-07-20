@@ -47,4 +47,6 @@ public class ScreenFilterService extends Service{
         linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.screen_filter, null);
         windowManager.addView(linearLayout, layoutParams);
     }
+
+    public void updateScreenFilter() {}
 }
