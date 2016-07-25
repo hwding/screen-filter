@@ -9,4 +9,11 @@
     <string name="is_on">滤镜已开启 :)</string>
     <string name="restore">恢复推荐配置</string>
     <string name="enable_filter">启用彩色滤镜</string>
+    <string name="license">开源许可证</string>
+    
+    <!-- Licenses -->
+    <string name="ColorSeekBar_title">ColorSeekBar</string>
+    <string name="ColorSeekBar_license">DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nVersion 2, December 2004\nCopyright © 2004 Leon Fu [rtugeek@gmail.com]\nEveryone is permitted to copy and distribute verbatim or modified\ncopies of this license document, and changing it is allowed as long as the name is changed.\nDO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nTERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n0. You just DO WHAT THE FUCK YOU WANT TO.</string>
+    <string name="CircleSeekBar_title">CircleSeekBar</string>
+    <string name="CircleSeekBar_license">PGSL\nplease give me star license</string>
 </resources>

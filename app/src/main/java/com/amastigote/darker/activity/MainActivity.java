@@ -123,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_licenses) {
+            startActivity(new Intent(MainActivity.this, LicenseActivity.class));
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
