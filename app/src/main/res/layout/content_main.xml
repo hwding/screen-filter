@@ -37,12 +37,13 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/selector_turn_on_button"
         android:textOn="@string/is_on"
         android:textOff="@string/is_off"/>
 
     <Button
+        android:id="@+id/cm_restore_settings_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -51,6 +52,6 @@
         android:textStyle="bold"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/shape_retore_settings_button"
+        android:background="@drawable/shape_restore_settings_button"
         android:text="@string/restore"/>
 </LinearLayout>

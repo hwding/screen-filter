@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="@string/brightness"/>
         <io.feeeei.circleseekbar.CircleSeekBar
+            android:id="@+id/cp_brightness_circleSeekBar"
             app:wheel_cur_process="0"
             android:layout_marginTop="20dp"
             android:padding="5dp"
@@ -58,12 +59,13 @@
             android:layout_height="wrap_content"
             android:text="@string/transparency"/>
         <io.feeeei.circleseekbar.CircleSeekBar
-            app:wheel_cur_process="70"
+            android:id="@+id/cp_alpha_circleSeekBar"
+            app:wheel_cur_process="128"
             android:layout_marginTop="20dp"
             android:padding="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:wheel_max_process="100"
+            app:wheel_max_process="80"
             app:wheel_reached_color="@color/text_transparent_gray"
             app:wheel_unreached_color="@color/text_transparent_more_gray"
             app:wheel_reached_width="10dp"
@@ -73,7 +75,7 @@
     </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -90,6 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/filter_color"/>
         <Switch
+            android:id="@+id/cp_useColor_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enable_filter"
@@ -97,6 +100,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"/>
         <com.rtugeek.android.colorseekbar.ColorSeekBar
+            android:visibility="invisible"
+            android:id="@+id/cp_colorSeekBar"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
