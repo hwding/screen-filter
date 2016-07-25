@@ -120,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/hwding/make-it-darker")));
         }
 
         if (id == R.id.action_licenses) {
