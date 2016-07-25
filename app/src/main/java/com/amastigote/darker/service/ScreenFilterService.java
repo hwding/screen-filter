@@ -3,6 +3,7 @@ package com.amastigote.darker.service;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -55,6 +56,10 @@ public class ScreenFilterService extends Service{
     public static void updateScreenFilter(DarkerSettings darkerSettings) {
         layoutParams.screenBrightness = darkerSettings.getBrightness();
         layoutParams.alpha = darkerSettings.getAlpha();
+        if (darkerSettings.isUseColor())
+            linearLayout.setBackgroundColor(darkerSettings.getColor());
+        else
+            linearLayout.setBackgroundColor(Color.BLACK);
         windowManager.updateViewLayout(linearLayout, layoutParams);
     }
 

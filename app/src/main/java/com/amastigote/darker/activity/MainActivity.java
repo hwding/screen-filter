@@ -136,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.setAlpha(((float) circleSeekBar_alpha.getCurProcess()) / 100);
         currentDarkerSettings.setUseColor(aSwitch.isChecked());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
+        /**
+         * setColorBarValue() is malfunctioning, need attention here
+         */
         currentDarkerSettings.saveCurrentSettings();
         ScreenFilterService.updateScreenFilter(currentDarkerSettings);
     }
