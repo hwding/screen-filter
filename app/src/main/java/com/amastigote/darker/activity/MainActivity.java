@@ -135,11 +135,8 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.setBrightness(((float) circleSeekBar_brightness.getCurProcess()) / 100);
         currentDarkerSettings.setAlpha(((float) circleSeekBar_alpha.getCurProcess()) / 100);
         currentDarkerSettings.setUseColor(aSwitch.isChecked());
-
+        currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
-        /**
-         * setColorBarValue() is malfunctioning, need attention here
-         */
         currentDarkerSettings.saveCurrentSettings();
         ScreenFilterService.updateScreenFilter(currentDarkerSettings);
     }
@@ -152,10 +149,9 @@ public class MainActivity extends AppCompatActivity {
             aSwitch.setChecked(true);
             colorSeekBar.setVisibility(View.VISIBLE);
         }
-        /**
-         * here
-         */
-        colorSeekBar.setColorBarValue(latestDarkerSettings.getColor());
+        colorSeekBar.setColorBarValue((int) latestDarkerSettings.getColorBarPosition());
+        System.out.println(latestDarkerSettings.getColorBarPosition());
+        System.out.println(colorSeekBar.getColorPosition());
     }
 
     private void checkPermissions() {
