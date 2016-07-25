@@ -150,8 +150,6 @@ public class MainActivity extends AppCompatActivity {
             colorSeekBar.setVisibility(View.VISIBLE);
         }
         colorSeekBar.setColorBarValue((int) latestDarkerSettings.getColorBarPosition());
-        System.out.println(latestDarkerSettings.getColorBarPosition());
-        System.out.println(colorSeekBar.getColorPosition());
     }
 
     private void checkPermissions() {
