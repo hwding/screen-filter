@@ -4,7 +4,7 @@
 **an Android app that dims your screen further to protect eyes in total darkness**
   
 [![License](https://img.shields.io/badge/LICENSE-GPL%203-blue.svg)](https://github.com/hwding/make-it-darker/blob/master/LICENSE)
-[![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)]()
+[![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)](https://www.android.com/)
 
 ## UPDATE LOG
 #####2016-07-26
