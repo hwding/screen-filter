@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
@@ -13,57 +13,63 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin">
+            android:layout_margin="10dp"
+            android:elevation="1dp"
+            tools:targetApi="lollipop">
             <LinearLayout
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
         <TextView
-            android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ColorSeekBar_title"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textSize="18sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ColorSeekBar_license"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="1dp"
+            tools:targetApi="lollipop">
             <LinearLayout
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/black"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CircleSeekBar_title"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/CircleSeekBar_license"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 </LinearLayout>
