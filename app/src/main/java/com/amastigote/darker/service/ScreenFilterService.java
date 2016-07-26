@@ -40,10 +40,11 @@ public class ScreenFilterService extends Service{
     private void createScreenFilter() {
         layoutParams = new WindowManager.LayoutParams();
         windowManager = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
-        layoutParams.type = WindowManager.LayoutParams.TYPE_PRIORITY_PHONE;
+        layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                            | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                           | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+                           | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                           | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
         layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
 
@@ -60,6 +61,17 @@ public class ScreenFilterService extends Service{
             linearLayout.setBackgroundColor(darkerSettings.getColor());
         else
             linearLayout.setBackgroundColor(Color.BLACK);
+        if (darkerSettings.isKeepScreenOn())
+            layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                    | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                    | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+        else
+            layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                    | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
         windowManager.updateViewLayout(linearLayout, layoutParams);
     }
 

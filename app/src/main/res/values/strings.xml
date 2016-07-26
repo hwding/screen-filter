@@ -10,6 +10,7 @@
     <string name="restore">恢复推荐配置</string>
     <string name="enable_filter">启用彩色滤镜</string>
     <string name="license">开源许可证</string>
+    <string name="keep_screen_on_toggle">开启滤镜时保持屏幕常亮</string>
     
     <!-- Licenses -->
     <string name="ColorSeekBar_title">ColorSeekBar</string>

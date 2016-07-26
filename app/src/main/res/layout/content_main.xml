@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
+    android:id="@+id/cm"
     android:gravity="center_vertical"
     android:background="@drawable/night"
     xmlns:android="http://schemas.android.com/apk/res/android"

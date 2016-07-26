@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,10 +16,12 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
+
 import io.feeeei.circleseekbar.CircleSeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ColorSeekBar colorSeekBar;
     Switch aSwitch;
     Intent intent;
+    View view;
 
     @Override
     protected void onDestroy() {
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         checkPermissions();
 
+        view = findViewById(R.id.cm);
         circleSeekBar_brightness = (CircleSeekBar) findViewById(R.id.cp_brightness_circleSeekBar);
         circleSeekBar_alpha = (CircleSeekBar) findViewById(R.id.cp_alpha_circleSeekBar);
         colorSeekBar = (ColorSeekBar) findViewById(R.id.cp_colorSeekBar);
@@ -57,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         restoreLatestSettings();
 
         toggleButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 if (((ToggleButton) view).isChecked())
@@ -71,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                DarkerSettings darkerSettings_default = DarkerSettings.getDefaultSettings();
-                circleSeekBar_brightness.setCurProcess((int) (darkerSettings_default.getBrightness() * 100));
-                circleSeekBar_alpha.setCurProcess((int) (darkerSettings_default.getAlpha() * 100));
-                if (aSwitch.isChecked() != darkerSettings_default.isUseColor()) {
-                    aSwitch.setChecked(darkerSettings_default.isUseColor());
+                currentDarkerSettings = DarkerSettings.getDefaultSettings();
+                circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+                circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+                if (aSwitch.isChecked() != currentDarkerSettings.isUseColor()) {
+                    aSwitch.setChecked(currentDarkerSettings.isUseColor());
                     AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
                     alphaAnimation_1.setDuration(300);
                     colorSeekBar.startAnimation(alphaAnimation_1);
@@ -124,8 +128,17 @@ public class MainActivity extends AppCompatActivity {
                     Uri.parse("https://github.com/hwding/make-it-darker")));
         }
 
-        if (id == R.id.action_licenses) {
+        else if (id == R.id.action_licenses) {
             startActivity(new Intent(MainActivity.this, LicenseActivity.class));
+        }
+
+        else if (id == R.id.keep_screen_on_toggle) {
+            if(item.isChecked())
+                currentDarkerSettings.setKeepScreenOn(false);
+            else
+                currentDarkerSettings.setKeepScreenOn(true);
+            currentDarkerSettings.saveCurrentSettings();
+            Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -138,18 +151,19 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
         currentDarkerSettings.saveCurrentSettings();
+        Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         ScreenFilterService.updateScreenFilter(currentDarkerSettings);
     }
 
     private void restoreLatestSettings() {
-        DarkerSettings latestDarkerSettings =  DarkerSettings.getCurrentSettings();
-        circleSeekBar_alpha.setCurProcess((int) (latestDarkerSettings.getAlpha() * 100));
-        circleSeekBar_brightness.setCurProcess((int) (latestDarkerSettings.getBrightness() * 100));
-        if (latestDarkerSettings.isUseColor()) {
+        currentDarkerSettings =  DarkerSettings.getCurrentSettings();
+        circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+        circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+        if (currentDarkerSettings.isUseColor()) {
             aSwitch.setChecked(true);
             colorSeekBar.setVisibility(View.VISIBLE);
         }
-        colorSeekBar.setColorBarValue((int) latestDarkerSettings.getColorBarPosition());
+        colorSeekBar.setColorBarValue((int) currentDarkerSettings.getColorBarPosition());
     }
 
     private void checkPermissions() {
@@ -184,5 +198,12 @@ public class MainActivity extends AppCompatActivity {
     private void prepareForService() {
         intent = new Intent(getApplicationContext(), ScreenFilterService.class);
         startService(intent);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.keep_screen_on_toggle).setChecked(currentDarkerSettings.isKeepScreenOn());
+        return true;
     }
 }
