@@ -1,7 +1,7 @@
 # make-it-darker
   
 ![image](https://github.com/hwding/make-it-darker/blob/master/pics/title.jpg)  
-**an Android app that dims your screen further to protect eyes in total darkness**
+**a screen filter that dims your screen further to protect eyes in total darkness**
   
 [![License](https://img.shields.io/badge/LICENSE-GPL%203-blue.svg)](https://github.com/hwding/make-it-darker/blob/master/LICENSE)
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)](https://www.android.com/)
