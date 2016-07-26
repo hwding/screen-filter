@@ -17,12 +17,10 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
-
 import io.feeeei.circleseekbar.CircleSeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         restoreLatestSettings();
 
-        toggleButton.setOnClickListener(new View.OnClickListener() {
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                if (((ToggleButton) view).isChecked())
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
                     collectCurrentDarkerSettings();
                 else
                     ScreenFilterService.removeScreenFilter();
