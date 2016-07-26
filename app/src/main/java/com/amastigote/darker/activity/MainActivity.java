@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -88,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        aSwitch.setOnClickListener(new View.OnClickListener() {
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                if (((Switch) view).isChecked()) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
                     AlphaAnimation alphaAnimation_0 = new AlphaAnimation(0, 1);
                     alphaAnimation_0.setDuration(300);
                     colorSeekBar.startAnimation(alphaAnimation_0);
@@ -105,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
