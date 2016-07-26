@@ -14,6 +14,6 @@
   - fix a bug that preference of filter color can not be restored
 
 ## SCREENSHOTS
-![image](https://github.com/hwding/make-it-darker/blob/master/Screenshot_20160725-121640.png)
-![image](https://github.com/hwding/make-it-darker/blob/master/Screenshot_20160725-121752.png)
-![image](https://github.com/hwding/make-it-darker/blob/master/Screenshot_20160725-122058.png)
+![image](https://github.com/hwding/make-it-darker/blob/master/a.png)
+![image](https://github.com/hwding/make-it-darker/blob/master/b.png)
+![image](https://github.com/hwding/make-it-darker/blob/master/c.png)

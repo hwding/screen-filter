@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Darker!</string>
     <string name="action_settings">Fork me on GitHub</string>
-    <string name="banner">通过提高滤镜遮挡度，Darker!能够进一步降低屏幕亮度以在黑暗中保护您的眼睛</string>
+    <string name="banner">通过调整遮挡度并激活滤镜，在完全黑暗中Darker!能够进一步降低屏幕亮度以保护您的视力</string>
     <string name="brightness">亮度</string>
     <string name="transparency">遮挡度</string>
     <string name="filter_color">滤镜颜色</string>
