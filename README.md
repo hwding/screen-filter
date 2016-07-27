@@ -9,6 +9,7 @@
 ## UPDATE LOG
 #####2016-07-27
   - new feature: now you can adjust the screen filter dynamically as long as it is activated
+  - fix a bug in 'keep screeen on' function
   - change background
 #####2016-07-26
   - new feature: now you can keep screen on when screen filter is activated  

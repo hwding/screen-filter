@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Darker!</string>
+    <string name="app_name">Darker屏幕滤镜</string>
     <string name="action_settings">Fork me on GitHub</string>
-    <string name="banner">通过调整遮挡度并激活滤镜，在完全黑暗中Darker!能够进一步降低屏幕亮度以保护您的视力</string>
+    <string name="banner">通过调整遮挡度并激活滤镜，在完全黑暗中进一步降低屏幕亮度以保护您的视力</string>
     <string name="brightness">亮度</string>
     <string name="transparency">遮挡度</string>
     <string name="filter_color">滤镜颜色</string>
@@ -10,7 +10,7 @@
     <string name="restore">恢复推荐配置</string>
     <string name="enable_filter">启用彩色滤镜</string>
     <string name="license">开源许可证</string>
-    <string name="keep_screen_on_toggle">开启滤镜时保持屏幕常亮</string>
+    <string name="keep_screen_on_toggle">开启滤镜时屏幕常亮</string>
     
     <!-- Licenses -->
     <string name="ColorSeekBar_title">ColorSeekBar</string>

@@ -168,7 +168,10 @@ public class MainActivity extends AppCompatActivity {
                 currentDarkerSettings.setKeepScreenOn(false);
             else
                 currentDarkerSettings.setKeepScreenOn(true);
-            currentDarkerSettings.saveCurrentSettings();
+            if (isServiceRunning)
+                collectCurrentDarkerSettings();
+            else
+                currentDarkerSettings.saveCurrentSettings();
             Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         }
 
