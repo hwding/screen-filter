@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Darker屏幕滤镜</string>
+    <string name="app_name">屏幕滤镜</string>
     <string name="action_settings">Fork me on GitHub</string>
     <string name="banner">通过调整遮挡度并激活滤镜，在完全黑暗中进一步降低屏幕亮度以保护您的视力</string>
     <string name="brightness">亮度</string>

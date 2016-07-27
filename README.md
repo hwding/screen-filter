@@ -10,6 +10,7 @@
 #####2016-07-27
   - new feature: now you can adjust the screen filter dynamically as long as it is activated
   - fix a bug in 'keep screeen on' function
+  - fix a bug that 'restore default settings' function is not working when screen filter is activated
   - change background
 
 #####2016-07-26

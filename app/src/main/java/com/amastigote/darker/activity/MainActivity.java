@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("make it darker!");
+        toolbar.setTitle("屏幕滤镜");
         setSupportActionBar(toolbar);
         DarkerSettings.initializeContext(getApplicationContext());
 
@@ -75,16 +75,33 @@ public class MainActivity extends AppCompatActivity {
         restore_settings_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                currentDarkerSettings = DarkerSettings.getDefaultSettings();
+//                circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+//                circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+//                if (aSwitch.isChecked() != currentDarkerSettings.isUseColor()) {
+//                    System.out.println(currentDarkerSettings.isUseColor());
+//                    aSwitch.setChecked(currentDarkerSettings.isUseColor());
+//                    System.out.println(aSwitch.isChecked());
+//                    AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
+//                    alphaAnimation_1.setDuration(300);
+//                    colorSeekBar.startAnimation(alphaAnimation_1);
+//                    colorSeekBar.setVisibility(View.INVISIBLE);
+//                }
+//                collectCurrentDarkerSettings();
                 currentDarkerSettings = DarkerSettings.getDefaultSettings();
-                circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
-                circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
-                if (aSwitch.isChecked() != currentDarkerSettings.isUseColor()) {
-                    aSwitch.setChecked(currentDarkerSettings.isUseColor());
-                    AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
-                    alphaAnimation_1.setDuration(300);
-                    colorSeekBar.startAnimation(alphaAnimation_1);
+                ScreenFilterService.removeScreenFilter();
+                isServiceRunning = false;
+                if (aSwitch.isChecked()) {
+                    aSwitch.setChecked(false);
+                    AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+                    alphaAnimation.setDuration(300);
+                    colorSeekBar.startAnimation(alphaAnimation);
                     colorSeekBar.setVisibility(View.INVISIBLE);
                 }
+                circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+                circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+                isServiceRunning = true;
+                collectCurrentDarkerSettings();
             }
         });
 
