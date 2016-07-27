@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Switch aSwitch;
     Intent intent;
     View view;
+    boolean isServiceRunning = false;
 
     @Override
     protected void onDestroy() {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                isServiceRunning = b;
                 if (b)
                     collectCurrentDarkerSettings();
                 else
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         restore_settings_button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 currentDarkerSettings = DarkerSettings.getDefaultSettings();
@@ -95,13 +96,45 @@ public class MainActivity extends AppCompatActivity {
                     alphaAnimation_0.setDuration(300);
                     colorSeekBar.startAnimation(alphaAnimation_0);
                     colorSeekBar.setVisibility(View.VISIBLE);
+                    currentDarkerSettings.setUseColor(true);
                 }
                 else {
                     AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
                     alphaAnimation_1.setDuration(300);
                     colorSeekBar.startAnimation(alphaAnimation_1);
                     colorSeekBar.setVisibility(View.INVISIBLE);
+                    currentDarkerSettings.setUseColor(false);
                 }
+                if (isServiceRunning)
+                    collectCurrentDarkerSettings();
+            }
+        });
+
+        /**
+         * dynamically change the filter when it is activated
+         */
+
+        circleSeekBar_brightness.setOnSeekBarChangeListener(new CircleSeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
+                if (isServiceRunning)
+                    collectCurrentDarkerSettings();
+            }
+        });
+
+        circleSeekBar_alpha.setOnSeekBarChangeListener(new CircleSeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
+                if (isServiceRunning)
+                    collectCurrentDarkerSettings();
+            }
+        });
+
+        colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
+            @Override
+            public void onColorChangeListener(int i, int i1, int i2) {
+                if (isServiceRunning)
+                    collectCurrentDarkerSettings();
             }
         });
     }
