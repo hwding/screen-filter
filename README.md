@@ -9,6 +9,7 @@
 ## UPDATE LOG
 #####2016-07-28
   - update a library to fix the bug that seekBar's pointer won't change its position along with its value
+  - fix a bug that screen filter will be activated unexpectedly when 'resore default settings' button is pressed
 
 #####2016-07-27
   - new feature: now you can adjust the screen filter dynamically as long as it is activated

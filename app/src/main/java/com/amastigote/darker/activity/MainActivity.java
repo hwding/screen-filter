@@ -75,22 +75,19 @@ public class MainActivity extends AppCompatActivity {
         restore_settings_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                currentDarkerSettings = DarkerSettings.getDefaultSettings();
-//                circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
-//                circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
-//                if (aSwitch.isChecked() != currentDarkerSettings.isUseColor()) {
-//                    System.out.println(currentDarkerSettings.isUseColor());
-//                    aSwitch.setChecked(currentDarkerSettings.isUseColor());
-//                    System.out.println(aSwitch.isChecked());
-//                    AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
-//                    alphaAnimation_1.setDuration(300);
-//                    colorSeekBar.startAnimation(alphaAnimation_1);
-//                    colorSeekBar.setVisibility(View.INVISIBLE);
-//                }
-//                collectCurrentDarkerSettings();
                 currentDarkerSettings = DarkerSettings.getDefaultSettings();
-                ScreenFilterService.removeScreenFilter();
-                isServiceRunning = false;
+                if (isServiceRunning) {
+                    ScreenFilterService.removeScreenFilter();
+                    isServiceRunning = false;
+                    doRestore();
+                    isServiceRunning = true;
+                    collectCurrentDarkerSettings();
+                }
+                else
+                    doRestore();
+            }
+
+            private void doRestore() {
                 if (aSwitch.isChecked()) {
                     aSwitch.setChecked(false);
                     AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
@@ -100,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
                 circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
-                isServiceRunning = true;
-                collectCurrentDarkerSettings();
             }
         });
 
@@ -126,10 +121,6 @@ public class MainActivity extends AppCompatActivity {
                     collectCurrentDarkerSettings();
             }
         });
-
-        /**
-         * dynamically change the filter when it is activated
-         */
 
         circleSeekBar_brightness.setOnSeekBarChangeListener(new CircleSeekBar.OnSeekBarChangeListener() {
             @Override
