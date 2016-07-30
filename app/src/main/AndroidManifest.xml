@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amastigote.darker">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -23,10 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.LicenseActivity"
-            android:label="@string/license"
-            android:parentActivityName=".activity.AboutActivity" />
+
         <activity
             android:name=".activity.AboutActivity"
             android:label="@string/about"
