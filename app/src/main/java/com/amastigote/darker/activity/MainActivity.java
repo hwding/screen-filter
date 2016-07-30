@@ -156,11 +156,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings)
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://github.com/hwding/make-it-darker")));
-        else if (id == R.id.action_licenses)
-            startActivity(new Intent(MainActivity.this, LicenseActivity.class));
+        if (id == R.id.action_about)
+            startActivity(new Intent(MainActivity.this, AboutActivity.class));
         else if (id == R.id.keep_screen_on_toggle) {
             if(item.isChecked())
                 currentDarkerSettings.setKeepScreenOn(false);
