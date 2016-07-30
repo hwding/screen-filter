@@ -29,8 +29,3 @@
 #####2016-07-25
   - improve color picker function
   - fix a bug that preference of filter color can not be restored
-
-## SCREENSHOTS
-![image](https://github.com/hwding/make-it-darker/blob/master/pics/a.png)
-![image](https://github.com/hwding/make-it-darker/blob/master/pics/b.png)
-![image](https://github.com/hwding/make-it-darker/blob/master/pics/c.png)
