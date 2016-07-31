@@ -7,6 +7,9 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)](https://www.android.com/)
 
 ## UPDATE LOG
+#####2016-08-01
+  - redesign UI and interaction
+
 #####2016-07-30
   - add feedback function
   - redesign UI and interaction

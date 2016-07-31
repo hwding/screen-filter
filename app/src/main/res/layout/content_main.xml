@@ -3,7 +3,6 @@
 <LinearLayout
     android:id="@+id/cm"
     android:gravity="center_vertical"
-    android:background="@drawable/sky"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,15 +18,13 @@
     tools:showIn="@layout/activity_main" >
 
     <TextView
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:gravity="center_horizontal"
         android:textColor="@color/text_light_gray"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/banner"
-        android:textSize="15sp"/>
+        android:textSize="13sp"/>
 
     <include layout="@layout/control_panel" />
 
@@ -45,16 +42,4 @@
         android:textOn="@string/is_on"
         android:textOff="@string/is_off"/>
 
-    <Button
-        android:id="@+id/cm_restore_settings_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/text_transparent_gray"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/shape_restore_settings_button"
-        android:text="@string/restore"/>
 </LinearLayout>

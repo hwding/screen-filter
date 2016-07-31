@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">屏幕滤镜</string>
     <string name="action_settings">Fork me on GitHub</string>
-    <string name="banner">通过调整遮挡度并激活滤镜，在完全黑暗中进一步降低屏幕亮度以保护您的视力</string>
-    <string name="brightness">亮度</string>
-    <string name="transparency">遮挡度</string>
+    <string name="banner">完全黑暗中使用滤镜可进一步降低屏幕亮度保护视力\n日常使用时启用暖色系滤镜可抗蓝光防止视觉疲劳</string>
+    <string name="brightness">屏幕亮度</string>
+    <string name="transparency">滤镜浓度</string>
     <string name="filter_color">滤镜颜色</string>
     <string name="is_off">滤镜未开启 :(</string>
     <string name="is_on">滤镜已开启 :)</string>
     <string name="restore">恢复推荐配置</string>
-    <string name="enable_filter">启用彩色滤镜</string>
+    <string name="enable_filter">启用有色滤镜</string>
     <string name="license">开源许可</string>
     <string name="feedback">发送反馈(通过邮件)</string>
     <string name="keep_screen_on_toggle">开启滤镜时屏幕常亮</string>
