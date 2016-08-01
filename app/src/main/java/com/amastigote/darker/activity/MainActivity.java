@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("  " + AboutActivity.getVersionCode(MainActivity.this));
+        toolbar.setTitle("  " + getResources().getString(R.string.app_name));
         toolbar.setLogo(R.mipmap.night_128);
         setSupportActionBar(toolbar);
         DarkerSettings.initializeContext(getApplicationContext());
