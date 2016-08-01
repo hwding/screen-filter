@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            stopService(intent);
                             System.exit(0);
                         }
                     })
