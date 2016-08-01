@@ -1,12 +1,16 @@
 package com.amastigote.darker.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +19,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerSettings;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     CircleSeekBar circleSeekBar_alpha;
     ColorSeekBar colorSeekBar;
     Switch aSwitch;
+    AppCompatButton appCompatButton;
     Intent intent;
     View view;
     boolean isServiceRunning = false;
@@ -58,18 +62,24 @@ public class MainActivity extends AppCompatActivity {
         circleSeekBar_alpha = (CircleSeekBar) findViewById(R.id.cp_alpha_circleSeekBar);
         colorSeekBar = (ColorSeekBar) findViewById(R.id.cp_colorSeekBar);
         aSwitch = (Switch) findViewById(R.id.cp_useColor_switch);
-        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.cm_toggle_button);
+        appCompatButton = (AppCompatButton) findViewById(R.id.cm_toggle_button);
 
         restoreLatestSettings();
 
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        setButtonState(false);
+        appCompatButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                isServiceRunning = b;
-                if (b)
-                    collectCurrentDarkerSettings();
-                else
+            public void onClick(View view) {
+                if (!isServiceRunning) {
+                    collectCurrentDarkerSettings(true);
+                    setButtonState(true);
+                    isServiceRunning = true;
+                }
+                else {
                     ScreenFilterService.removeScreenFilter();
+                    setButtonState(false);
+                    isServiceRunning = false;
+                }
             }
         });
 
@@ -91,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     currentDarkerSettings.setUseColor(false);
                 }
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings();
+                    collectCurrentDarkerSettings(true);
             }
         });
 
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings();
+                    collectCurrentDarkerSettings(true);
             }
         });
 
@@ -107,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings();
+                    collectCurrentDarkerSettings(true);
             }
         });
 
@@ -115,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onColorChangeListener(int i, int i1, int i2) {
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings();
+                    collectCurrentDarkerSettings(true);
             }
         });
     }
@@ -131,30 +141,68 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_about)
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
-        else if (id == R.id.keep_screen_on_toggle) {
-            if(item.isChecked())
+        else if (id == R.id.action_changeKeepScreenOnState) {
+            if (currentDarkerSettings.isKeepScreenOn()) {
                 currentDarkerSettings.setKeepScreenOn(false);
-            else
+                invalidateOptionsMenu();
+                Snackbar.make(view, "屏幕常亮关", Snackbar.LENGTH_LONG).show();
+            }
+            else {
                 currentDarkerSettings.setKeepScreenOn(true);
+                invalidateOptionsMenu();
+                Snackbar.make(view, "屏幕常亮开", Snackbar.LENGTH_LONG).show();
+            }
             if (isServiceRunning)
-                collectCurrentDarkerSettings();
+                collectCurrentDarkerSettings(false);
             else
                 currentDarkerSettings.saveCurrentSettings();
-            Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         }
         else if (id == R.id.action_restoreDefaultSettings) {
-            currentDarkerSettings = DarkerSettings.getDefaultSettings();
-            if (isServiceRunning) {
-                ScreenFilterService.removeScreenFilter();
-                isServiceRunning = false;
-                doRestore();
-                isServiceRunning = true;
-                collectCurrentDarkerSettings();
-            }
-            else
-                doRestore();
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("恢复推荐配置")
+                    .setMessage("此项操作将会覆盖您最新的偏好配置")
+                    .setPositiveButton("恢复", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            currentDarkerSettings = DarkerSettings.getDefaultSettings();
+                            if (isServiceRunning) {
+                                ScreenFilterService.removeScreenFilter();
+                                isServiceRunning = false;
+                                doRestore();
+                                isServiceRunning = true;
+                                collectCurrentDarkerSettings(true);
+                            }
+                            else
+                                doRestore();
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.findItem(R.id.action_changeKeepScreenOnState);
+        if (currentDarkerSettings.isKeepScreenOn())
+            menuItem.setIcon(MainActivity.this.getResources().getDrawable(R.mipmap.ic_lock_outline_white_24dp));
+        else
+            menuItem.setIcon(MainActivity.this.getResources().getDrawable(R.mipmap.ic_lock_open_white_24dp));
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    private void setButtonState(boolean isChecked) {
+        if (isChecked) {
+            appCompatButton.setSupportBackgroundTintList(
+                    ColorStateList.valueOf(getResources().getColor(R.color.toggle_button_on)));
+            appCompatButton.setText(getResources().getString(R.string.is_on));
+        }
+        else {
+            appCompatButton.setSupportBackgroundTintList(
+                    ColorStateList.valueOf(getResources().getColor(R.color.toggle_button_off)));
+            appCompatButton.setText(getResources().getString(R.string.is_off));
+        }
     }
 
     private void doRestore() {
@@ -167,16 +215,18 @@ public class MainActivity extends AppCompatActivity {
         }
         circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
         circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+        invalidateOptionsMenu();
     }
 
-    private void collectCurrentDarkerSettings() {
+    private void collectCurrentDarkerSettings(boolean showHint) {
         currentDarkerSettings.setBrightness(((float) circleSeekBar_brightness.getCurProcess()) / 100);
         currentDarkerSettings.setAlpha(((float) circleSeekBar_alpha.getCurProcess()) / 100);
         currentDarkerSettings.setUseColor(aSwitch.isChecked());
         currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
         currentDarkerSettings.saveCurrentSettings();
-        Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
+        if (showHint)
+            Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         ScreenFilterService.updateScreenFilter(currentDarkerSettings);
     }
 
@@ -223,12 +273,5 @@ public class MainActivity extends AppCompatActivity {
     private void prepareForService() {
         intent = new Intent(getApplicationContext(), ScreenFilterService.class);
         startService(intent);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.keep_screen_on_toggle).setChecked(currentDarkerSettings.isKeepScreenOn());
-        return true;
     }
 }

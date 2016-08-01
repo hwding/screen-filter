@@ -28,18 +28,12 @@
 
     <include layout="@layout/control_panel" />
 
-    <ToggleButton
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/cm_toggle_button"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:textColor="@color/text_transparent_gray"
-        android:textSize="18sp"
+        android:textColor="@color/text_light_gray"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/selector_turn_on_button"
-        android:textOn="@string/is_on"
-        android:textOff="@string/is_off"/>
+        android:layout_marginTop="40dp" />
 
 </LinearLayout>

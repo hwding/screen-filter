@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
     <item
-        android:title="@string/keep_screen_on_toggle"
-        android:id="@+id/keep_screen_on_toggle"
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        android:checkable="true"/>
-    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
         android:title="@string/about"
@@ -19,4 +13,10 @@
         android:title="@string/restore"
         app:showAsAction="ifRoom"
         android:icon="@mipmap/ic_settings_backup_restore_white_24dp"/>
+    <item
+        android:id="@+id/action_changeKeepScreenOnState"
+        android:orderInCategory="100"
+        android:title="@string/keep_screen_on"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_lock_outline_white_24dp"/>
 </menu>
