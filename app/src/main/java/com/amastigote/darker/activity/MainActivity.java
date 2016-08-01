@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     View view;
     boolean isServiceRunning = false;
+    static boolean hasSplashScreenShown = false;
 
     @Override
     protected void onDestroy() {
@@ -273,5 +275,28 @@ public class MainActivity extends AppCompatActivity {
     private void prepareForService() {
         intent = new Intent(getApplicationContext(), ScreenFilterService.class);
         startService(intent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("完全退出")
+                    .setMessage("此项操作将会关闭滤镜并完全退出应用")
+                    .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            System.exit(0);
+                        }
+                    })
+                    .setNegativeButton("后台运行", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            moveTaskToBack(true);
+                        }
+                    })
+                    .show();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

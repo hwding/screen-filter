@@ -15,4 +15,6 @@
     <color name="toggle_button_off">#700600</color>
     <color name="toggle_button_on">#00700b</color>
     <color name="button">#98004d84</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
