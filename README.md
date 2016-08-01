@@ -9,6 +9,8 @@
 ## UPDATE LOG
 #####2016-08-01
   - redesign UI and interaction
+  - add splash page
+  - add quit notification
 
 #####2016-07-30
   - add feedback function
