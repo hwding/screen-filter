@@ -5,8 +5,9 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)](https://www.android.com/)
 
 ## UPDATE LOG
-#####2016-08-01
-  - fix a bug in intent handling
+#####2016-08-03
+  - new feature: now you can (/de)activate screen filter through tapping the notifacation
+  - you can also jump directly onto control panel with our new notification
 
 #####2016-08-01
   - redesign UI and interaction

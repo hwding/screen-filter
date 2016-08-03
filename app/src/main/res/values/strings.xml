@@ -5,8 +5,8 @@
     <string name="transparency">滤镜浓度</string>
     <string name="filter_color">滤镜颜色</string>
     <string name="keep_screen_on">屏幕常亮</string>
-    <string name="is_off">滤镜未开启 :(</string>
-    <string name="is_on">滤镜已开启 :)</string>
+    <string name="is_off">滤镜未激活 (˘•_•˘)</string>
+    <string name="is_on">滤镜已激活 (•̀ᴗ•́)و</string>
     <string name="restore">恢复推荐配置</string>
     <string name="enable_filter">启用有色滤镜</string>
     <string name="license">向开源致敬</string>

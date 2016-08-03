@@ -1,7 +1,10 @@
 package com.amastigote.darker.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Build;
@@ -22,6 +25,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.amastigote.darker.R;
+import com.amastigote.darker.model.DarkerNotification;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
@@ -30,6 +34,7 @@ import io.feeeei.circleseekbar.CircleSeekBar;
 
 public class MainActivity extends AppCompatActivity {
     DarkerSettings currentDarkerSettings = new DarkerSettings();
+    DarkerNotification darkerNotification;
     CircleSeekBar circleSeekBar_brightness;
     CircleSeekBar circleSeekBar_alpha;
     ColorSeekBar colorSeekBar;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     AppCompatButton appCompatButton;
     Intent intent;
     View view;
+    BroadcastReceiver broadcastReceiver;
     boolean isServiceRunning = false;
     static boolean hasSplashScreenShown = false;
 
@@ -44,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         if (intent != null)
             stopService(intent);
+        unregisterReceiver(broadcastReceiver);
+        darkerNotification.removeNotification();
         super.onDestroy();
     }
 
@@ -58,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         DarkerSettings.initializeContext(getApplicationContext());
 
         checkPermissions();
+        darkerNotification = new DarkerNotification(MainActivity.this);
+        darkerNotification.updateStatus(isServiceRunning);
 
         view = findViewById(R.id.cm);
         circleSeekBar_brightness = (CircleSeekBar) findViewById(R.id.cp_brightness_circleSeekBar);
@@ -82,8 +92,31 @@ public class MainActivity extends AppCompatActivity {
                     setButtonState(false);
                     isServiceRunning = false;
                 }
+                darkerNotification.updateStatus(isServiceRunning);
             }
         });
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (DarkerNotification.PRESS_BUTTON.equals(intent.getAction())) {
+                    if (!isServiceRunning) {
+                        collectCurrentDarkerSettings(true);
+                        setButtonState(true);
+                        isServiceRunning = true;
+                    }
+                    else {
+                        ScreenFilterService.removeScreenFilter();
+                        setButtonState(false);
+                        isServiceRunning = false;
+                    }
+                    darkerNotification.updateStatus(isServiceRunning);
+                }
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(DarkerNotification.PRESS_BUTTON);
+        registerReceiver(broadcastReceiver, intentFilter);
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -287,6 +320,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             stopService(intent);
+                            unregisterReceiver(broadcastReceiver);
+                            darkerNotification.removeNotification();
                             System.exit(0);
                         }
                     })
