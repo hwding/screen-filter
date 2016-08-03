@@ -1,4 +1,4 @@
-# make-it-darker
+# screen-filter
 **a screen filter that dims your screen further to protect eyes in total darkness**
   
 [![License](https://img.shields.io/badge/LICENSE-GPL%203-blue.svg)](https://github.com/hwding/make-it-darker/blob/master/LICENSE)
