@@ -10,7 +10,7 @@
   - fix a bug that your wallpaper will go black when screen filter is activated
   - improve code structure
   - more power-saving when service is running in background
-  - bug fix
+  - more bug fixes
   - adjust some indicative information
   - adjust UI lightly
 
