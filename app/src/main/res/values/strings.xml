@@ -14,10 +14,10 @@
     <string name="about">关于</string>
     <string name="positive">确定</string>
     <string name="brief_introduction">\"一款可配置的轻量级屏幕滤镜\"</string>
-    <string name="gitHub_src_address">https://github.com/hwding/make-it-darker/tree/master/app/src/main</string>
+    <string name="gitHub_src_address">https://github.com/hwding/screen-filter/tree/master/app/src/main</string>
     <string name="source_code">源码:&#160;</string>
     <string name="update_log">日志:&#160;</string>
-    <string name="gitHub_readme_address">https://github.com/hwding/make-it-darker/blob/master/README.md</string>
+    <string name="gitHub_readme_address">https://github.com/hwding/screen-filter/blob/master/README.md</string>
 
     <!-- Licenses -->
     <string name="ColorSeekBar_title">ColorSeekBar</string>
