@@ -46,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (intent != null)
-            stopService(intent);
-        unregisterReceiver(broadcastReceiver);
-        darkerNotification.removeNotification();
+        doCleanBeforeExit();
         super.onDestroy();
     }
 
@@ -275,20 +272,6 @@ public class MainActivity extends AppCompatActivity {
         colorSeekBar.setColorBarValue((int) currentDarkerSettings.getColorBarPosition());
     }
 
-    private void checkPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(getApplicationContext())) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent, 0);
-            }
-            else
-                prepareForService();
-        }
-        else
-            prepareForService();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -304,11 +287,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void prepareForService() {
-        intent = new Intent(getApplicationContext(), ScreenFilterService.class);
-        startService(intent);
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
@@ -318,10 +296,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if (intent != null)
-                                stopService(intent);
-                            unregisterReceiver(broadcastReceiver);
-                            darkerNotification.removeNotification();
+                            doCleanBeforeExit();
                             System.exit(0);
                         }
                     })
@@ -334,5 +309,30 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(getApplicationContext())) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 0);
+            }
+            else
+                prepareForService();
+        }
+        else
+            prepareForService();
+    }
+
+    private void prepareForService() {
+        intent = new Intent(getApplicationContext(), ScreenFilterService.class);
+        startService(intent);
+    }
+
+    private void doCleanBeforeExit() {
+        stopService(intent);
+        unregisterReceiver(broadcastReceiver);
+        darkerNotification.removeNotification();
     }
 }

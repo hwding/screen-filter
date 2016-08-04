@@ -28,8 +28,9 @@ public class ScreenFilterService extends Service{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (linearLayout != null)
-            windowManager.removeView(linearLayout);
+        try {
+            windowManager.removeViewImmediate(linearLayout);
+        } catch (Exception ignored) {}
     }
 
     @Nullable
