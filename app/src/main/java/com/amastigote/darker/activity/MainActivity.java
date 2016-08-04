@@ -23,13 +23,11 @@ import android.view.animation.AlphaAnimation;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-
 import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerNotification;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
-
 import io.feeeei.circleseekbar.CircleSeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -201,10 +199,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             currentDarkerSettings = DarkerSettings.getDefaultSettings();
                             if (isServiceRunning) {
-                                ScreenFilterService.removeScreenFilter();
-                                isServiceRunning = false;
                                 doRestore();
-                                isServiceRunning = true;
                                 collectCurrentDarkerSettings(true);
                             }
                             else
@@ -241,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doRestore() {
+        circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+        circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
         if (aSwitch.isChecked()) {
             aSwitch.setChecked(false);
             AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
@@ -248,8 +245,6 @@ public class MainActivity extends AppCompatActivity {
             colorSeekBar.startAnimation(alphaAnimation);
             colorSeekBar.setVisibility(View.INVISIBLE);
         }
-        circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
-        circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
         invalidateOptionsMenu();
     }
 
@@ -262,7 +257,11 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.saveCurrentSettings();
         if (showHint)
             Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
-        ScreenFilterService.updateScreenFilter(currentDarkerSettings);
+        if (isServiceRunning)
+            ScreenFilterService.updateScreenFilter(currentDarkerSettings);
+        else {
+            ScreenFilterService.activateScreenFilter(currentDarkerSettings);
+        }
     }
 
     private void restoreLatestSettings() {
@@ -319,7 +318,8 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            stopService(intent);
+                            if (intent != null)
+                                stopService(intent);
                             unregisterReceiver(broadcastReceiver);
                             darkerNotification.removeNotification();
                             System.exit(0);

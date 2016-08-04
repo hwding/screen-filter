@@ -7,6 +7,9 @@
 ## UPDATE LOG
 #####2016-08-04
   - fix a bug that screen filter can not cover status bar and lock screen
+  - fix a bug that your wallpaper will turns black when screen filter is activated
+  - improve code structure
+  - more power-saving when service is running in background
 
 #####2016-08-03
   - new feature: now you can (/de)activate screen filter through tapping the notifacation, you can also jump directly onto control panel with our new notification
