@@ -7,7 +7,7 @@
 ## UPDATE LOG
 #####2016-08-04
   - fix a bug that screen filter can not cover status bar and lock screen
-  - fix a bug that your wallpaper will turns black when screen filter is activated
+  - fix a bug that your wallpaper will go black when screen filter is activated
   - improve code structure
   - more power-saving when service is running in background
 
