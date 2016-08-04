@@ -1,5 +1,5 @@
 # screen-filter
-**a screen filter that dims your screen further to protect eyes in total darkness**
+**a screen filter that dims your screen further to protect eyes in complete darkness**
   
 [![License](https://img.shields.io/badge/LICENSE-GPL%203-blue.svg)](https://github.com/hwding/make-it-darker/blob/master/LICENSE)
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg)](https://www.android.com/)
@@ -10,6 +10,9 @@
   - fix a bug that your wallpaper will go black when screen filter is activated
   - improve code structure
   - more power-saving when service is running in background
+  - bug fix
+  - adjust some indicative information
+  - adjust UI lightly
 
 #####2016-08-03
   - new feature: now you can (/de)activate screen filter through tapping the notifacation, you can also jump directly onto control panel with our new notification

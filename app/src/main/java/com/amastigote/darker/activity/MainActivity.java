@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerNotification;
 import com.amastigote.darker.model.DarkerSettings;
@@ -54,13 +53,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("  " + getResources().getString(R.string.app_name));
         toolbar.setLogo(R.mipmap.night_128);
         setSupportActionBar(toolbar);
+
         DarkerSettings.initializeContext(getApplicationContext());
 
         checkPermissions();
+
         darkerNotification = new DarkerNotification(MainActivity.this);
         darkerNotification.updateStatus(isServiceRunning);
 
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.action_restoreDefaultSettings) {
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("恢复推荐配置")
-                    .setMessage("此项操作将会覆盖您最新的偏好配置")
+                    .setMessage("将覆盖您的偏好配置")
                     .setPositiveButton("恢复", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -233,8 +235,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doRestore() {
-        circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
-        circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+        {
+            boolean isCurrentServiceRunning = false;
+            if (isServiceRunning) {
+                isCurrentServiceRunning = true;
+                isServiceRunning = false;
+            }
+            circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+            circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+            if (isCurrentServiceRunning)
+                isServiceRunning = true;
+        }
+
         if (aSwitch.isChecked()) {
             aSwitch.setChecked(false);
             AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
@@ -280,8 +292,9 @@ public class MainActivity extends AppCompatActivity {
                 if (Settings.canDrawOverlays(this))
                     prepareForService();
                 else {
-                    Toast.makeText(getApplicationContext(), "权限请求被拒绝 无法正常工作 :(", Toast.LENGTH_LONG).show();
+                    doCleanBeforeExit();
                     finish();
+                    System.exit(0);
                 }
             }
         }
@@ -292,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("完全退出")
-                    .setMessage("此项操作将会关闭滤镜并完全退出应用")
+                    .setMessage("将关闭滤镜并完全退出应用")
                     .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -331,8 +344,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doCleanBeforeExit() {
-        stopService(intent);
-        unregisterReceiver(broadcastReceiver);
-        darkerNotification.removeNotification();
+        try {
+            darkerNotification.removeNotification();
+            unregisterReceiver(broadcastReceiver);
+            stopService(intent);
+        } catch (Exception ignored) {}
     }
 }

@@ -9,8 +9,8 @@
     <string name="is_on">滤镜已激活 (•̀ᴗ•́)و</string>
     <string name="restore">恢复推荐配置</string>
     <string name="enable_filter">启用有色滤镜</string>
-    <string name="license">向开源致敬</string>
-    <string name="feedback">发送反馈(通过邮件)</string>
+    <string name="license">第三方库开源许可证</string>
+    <string name="feedback">发送意见反馈(邮件)</string>
     <string name="about">关于</string>
     <string name="positive">确定</string>
     <string name="brief_introduction">\"一款可配置的轻量级屏幕滤镜\"</string>
