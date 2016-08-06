@@ -18,13 +18,9 @@ public class DarkerSettings {
     private static final String BRIGHTNESS = "BRIGHTNESS";
     private static final String ALPHA = "ALPHA";
     private static final String COLOR_BAR_POSITION = "COLOR_BAR_POSITION";
-    private static final String COLOR = "COLOR";
     private static final String USE_COLOR = "USE_COLOR";
     private static final String KEEP_SCREEN_ON = "KEEP_SCREEN_ON";
-    public static final float ALPHA_MINIMUM = 0.0F;
-    public static final float ALPHA_MAXIMUM = 1.0F;
-    public static final float ALPHA_DEFAULT = 0.4F;
-    public static final float BRIGHTNESS_AUTO = -1.0F;
+    private static final float ALPHA_DEFAULT = 0.4F;
     private static final float COLOR_BAR_POSITION_DEFAULT = 0.0F;
     private static final boolean USE_COLOR_DEFAULT = false;
     private static final boolean KEEP_SCREEN_ON_DEFAULT = false;

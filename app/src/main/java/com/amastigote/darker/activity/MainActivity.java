@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -215,21 +216,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem menuItem = menu.findItem(R.id.action_changeKeepScreenOnState);
         if (currentDarkerSettings.isKeepScreenOn())
-            menuItem.setIcon(MainActivity.this.getResources().getDrawable(R.mipmap.ic_lock_outline_white_24dp));
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_lock_outline_white_24dp));
         else
-            menuItem.setIcon(MainActivity.this.getResources().getDrawable(R.mipmap.ic_lock_open_white_24dp));
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_lock_open_white_24dp));
         return super.onPrepareOptionsMenu(menu);
     }
 
     private void setButtonState(boolean isChecked) {
         if (isChecked) {
             appCompatButton.setSupportBackgroundTintList(
-                    ColorStateList.valueOf(getResources().getColor(R.color.toggle_button_on)));
+                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.toggle_button_on)));
             appCompatButton.setText(getResources().getString(R.string.is_on));
         }
         else {
             appCompatButton.setSupportBackgroundTintList(
-                    ColorStateList.valueOf(getResources().getColor(R.color.toggle_button_off)));
+                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.toggle_button_off)));
             appCompatButton.setText(getResources().getString(R.string.is_off));
         }
     }

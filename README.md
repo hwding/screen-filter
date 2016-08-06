@@ -5,6 +5,10 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)
 
 ## UPDATE LOG
+#####2016-08-06
+  - remove duplicated methods
+  - remove unused codes
+
 #####2016-08-04
   - fix a bug that screen filter can not cover status bar and lock screen
   - fix a bug that your wallpaper will go black when screen filter is activated
