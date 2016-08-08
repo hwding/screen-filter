@@ -7,6 +7,7 @@
 ## UPDATE LOG
 #####2016-08-06
   - improve service persistance
+  - change icon
 
 #####2016-08-06
   - remove duplicated methods
