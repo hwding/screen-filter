@@ -6,6 +6,9 @@
 
 ## UPDATE LOG
 #####2016-08-06
+  - improve service persistance
+
+#####2016-08-06
   - remove duplicated methods
   - remove unused codes
 
