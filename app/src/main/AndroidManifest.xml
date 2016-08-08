@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.amastigote.darker">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -10,9 +11,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:persistent="true">
-        <service android:name=".service.ScreenFilterService" />
+        android:theme="@style/Theme.AppCompat"
+        android:persistent="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <service
+            android:name=".service.ScreenFilterService" />
 
         <activity
             android:name=".activity.MainActivity"
@@ -20,16 +24,18 @@
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
+            <intent-filter android:priority="1000">
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.AboutActivity"
             android:label="@string/about"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".activity.FullscreenActivity"
             android:label="@string/app_name"
@@ -40,5 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 </manifest>
