@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     View view;
     BroadcastReceiver broadcastReceiver;
     boolean isServiceRunning = false;
-    static boolean hasSplashScreenShown = false;
 
     @Override
     protected void onDestroy() {
@@ -287,7 +286,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (Settings.canDrawOverlays(this))
@@ -299,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

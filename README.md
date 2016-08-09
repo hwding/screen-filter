@@ -5,7 +5,10 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)
 
 ## UPDATE LOG
-#####2016-08-06
+#####2016-08-08
+  - remove slpash page to simplify apk
+
+#####2016-08-08
   - improve service persistance
   - change icon
 
