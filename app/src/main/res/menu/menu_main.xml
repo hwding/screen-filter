@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
     <item
-        android:id="@+id/action_about"
-        android:orderInCategory="100"
-        android:title="@string/about"
-        app:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/action_restoreDefaultSettings"
         android:orderInCategory="100"
         android:title="@string/restore"
@@ -19,4 +14,9 @@
         android:title="@string/keep_screen_on"
         app:showAsAction="ifRoom"
         android:icon="@mipmap/ic_lock_outline_white_24dp"/>
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="@string/about"
+        app:showAsAction="ifRoom"/>
 </menu>
