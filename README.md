@@ -5,13 +5,13 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)
 
 ## UPDATE LOG
-#####2016-08-08
+#####2016-08-09
   - remove slpash page to simplify apk
   - remove useless codes
   - fix the bug that screen will dim and lock down even when you are watch videos after activating screen filter, so the 'keep screen on' function is removed
   - improve UI
 
-#####2016-08-08
+#####2016-08-07
   - improve service persistance
   - change icon
 
