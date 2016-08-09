@@ -18,7 +18,7 @@
     tools:showIn="@layout/activity_main" >
 
     <TextView
-        android:gravity="center_horizontal"
+        android:lineSpacingMultiplier="1.1"
         android:textColor="@color/text_light_gray"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"

@@ -173,27 +173,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_about)
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
-        else if (id == R.id.action_changeKeepScreenOnState) {
-            if (currentDarkerSettings.isKeepScreenOn()) {
-                currentDarkerSettings.setKeepScreenOn(false);
-                invalidateOptionsMenu();
-                Snackbar.make(view, "屏幕常亮关", Snackbar.LENGTH_LONG).show();
-            }
-            else {
-                currentDarkerSettings.setKeepScreenOn(true);
-                invalidateOptionsMenu();
-                Snackbar.make(view, "屏幕常亮开", Snackbar.LENGTH_LONG).show();
-            }
-            if (isServiceRunning)
-                collectCurrentDarkerSettings(false);
-            else
-                currentDarkerSettings.saveCurrentSettings();
-        }
         else if (id == R.id.action_restoreDefaultSettings) {
             new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("恢复推荐配置")
-                    .setMessage("将覆盖您的偏好配置")
-                    .setPositiveButton("恢复", new DialogInterface.OnClickListener() {
+                    .setTitle("重置配置面板")
+                    .setMessage("将覆盖您的偏好配置并恢复为推荐配置")
+                    .setPositiveButton("确认重置", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             currentDarkerSettings = DarkerSettings.getDefaultSettings();
@@ -209,16 +193,6 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem menuItem = menu.findItem(R.id.action_changeKeepScreenOnState);
-        if (currentDarkerSettings.isKeepScreenOn())
-            menuItem.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_lock_outline_white_24dp));
-        else
-            menuItem.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_lock_open_white_24dp));
-        return super.onPrepareOptionsMenu(menu);
     }
 
     private void setButtonState(boolean isChecked) {

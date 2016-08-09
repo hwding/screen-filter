@@ -10,7 +10,6 @@ public class DarkerSettings {
     boolean useColor;
     float colorBarPosition;
     int color;
-    boolean keepScreenOn;
 
     private static Context context = null;
     private static SharedPreferences sharedPreferences_default = null;
@@ -19,11 +18,9 @@ public class DarkerSettings {
     private static final String ALPHA = "ALPHA";
     private static final String COLOR_BAR_POSITION = "COLOR_BAR_POSITION";
     private static final String USE_COLOR = "USE_COLOR";
-    private static final String KEEP_SCREEN_ON = "KEEP_SCREEN_ON";
     private static final float ALPHA_DEFAULT = 0.4F;
     private static final float COLOR_BAR_POSITION_DEFAULT = 0.0F;
     private static final boolean USE_COLOR_DEFAULT = false;
-    private static final boolean KEEP_SCREEN_ON_DEFAULT = false;
 
     public static void initializeContext(Context context) {
         DarkerSettings.context = context;
@@ -60,14 +57,11 @@ public class DarkerSettings {
                 COLOR_BAR_POSITION_DEFAULT);
         boolean thisUseColor = sharedPreferences.getBoolean(USE_COLOR,
                 USE_COLOR_DEFAULT);
-        boolean thisKeepScreenOn = sharedPreferences.getBoolean(KEEP_SCREEN_ON,
-                KEEP_SCREEN_ON_DEFAULT);
 
         thisDarkerSettings.setBrightness(thisBrightness);
         thisDarkerSettings.setAlpha(thisAlpha);
         thisDarkerSettings.setColorBarPosition(thisColorBarPosition);
         thisDarkerSettings.setUseColor(thisUseColor);
-        thisDarkerSettings.setKeepScreenOn(thisKeepScreenOn);
 
         return thisDarkerSettings;
     }
@@ -112,21 +106,12 @@ public class DarkerSettings {
         this.color = color;
     }
 
-    public boolean isKeepScreenOn() {
-        return keepScreenOn;
-    }
-
-    public void setKeepScreenOn(boolean keepScreenOn) {
-        this.keepScreenOn = keepScreenOn;
-    }
-
     public void saveCurrentSettings() {
         SharedPreferences.Editor editor = sharedPreferences_current.edit();
         editor.putFloat(BRIGHTNESS, brightness);
         editor.putFloat(ALPHA, alpha);
         editor.putFloat(COLOR_BAR_POSITION, colorBarPosition);
         editor.putBoolean(USE_COLOR, useColor);
-        editor.putBoolean(KEEP_SCREEN_ON, keepScreenOn);
         editor.apply();
     }
 }

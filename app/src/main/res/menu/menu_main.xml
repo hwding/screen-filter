@@ -1,4 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
@@ -6,14 +7,7 @@
         android:id="@+id/action_restoreDefaultSettings"
         android:orderInCategory="100"
         android:title="@string/restore"
-        app:showAsAction="ifRoom"
-        android:icon="@mipmap/ic_settings_backup_restore_white_24dp"/>
-    <item
-        android:id="@+id/action_changeKeepScreenOnState"
-        android:orderInCategory="100"
-        android:title="@string/keep_screen_on"
-        app:showAsAction="ifRoom"
-        android:icon="@mipmap/ic_lock_outline_white_24dp"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_about"
         android:orderInCategory="100"

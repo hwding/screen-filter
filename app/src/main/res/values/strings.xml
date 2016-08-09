@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">屏幕滤镜</string>
-    <string name="banner">完全黑暗中使用滤镜可进一步降低屏幕亮度保护视力\n日常使用时启用暖色系滤镜可抗蓝光防止视觉疲劳</string>
+    <string name="banner">•&#160;完全黑暗中使用滤镜可进一步降低屏幕亮度保护视力\n•&#160;日常使用时启用暖色系滤镜可抗蓝光防止视觉疲劳</string>
     <string name="brightness">屏幕亮度</string>
     <string name="transparency">滤镜浓度</string>
     <string name="filter_color">滤镜颜色</string>
     <string name="keep_screen_on">屏幕常亮</string>
     <string name="is_off">滤镜未激活 (˘•_•˘)</string>
     <string name="is_on">滤镜已激活 (•̀ᴗ•́)و</string>
-    <string name="restore">恢复推荐配置</string>
+    <string name="restore">重置</string>
     <string name="enable_filter">启用有色滤镜</string>
     <string name="license">第三方库开源许可证</string>
     <string name="feedback">提供意见与建议</string>

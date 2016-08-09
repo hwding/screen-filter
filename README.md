@@ -7,6 +7,9 @@
 ## UPDATE LOG
 #####2016-08-08
   - remove slpash page to simplify apk
+  - remove useless codes
+  - fix the bug that screen will dim and lock down even when you are watch videos after activating screen filter, so the 'keep screen on' function is removed
+  - improve UI
 
 #####2016-08-08
   - improve service persistance
