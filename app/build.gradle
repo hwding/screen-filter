@@ -8,8 +8,8 @@ android {
         applicationId "com.amastigote.darker"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 10
-        versionName "0.0.9-simplified"
+        versionCode 11
+        versionName "0.1.0-stable"
     }
     buildTypes {
         release {
