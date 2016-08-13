@@ -5,6 +5,9 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)
 
 ## UPDATE LOG
+#####2016-08-13
+  - set fullscreen flag for screen filter
+
 #####2016-08-09
   - remove slpash page to simplify apk
   - remove useless codes
