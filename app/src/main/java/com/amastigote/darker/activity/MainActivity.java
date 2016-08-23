@@ -28,13 +28,15 @@ import com.amastigote.darker.model.DarkerNotification;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
-import io.feeeei.circleseekbar.CircleSeekBar;
+import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class MainActivity extends AppCompatActivity {
     DarkerSettings currentDarkerSettings = new DarkerSettings();
     DarkerNotification darkerNotification;
-    CircleSeekBar circleSeekBar_brightness;
-    CircleSeekBar circleSeekBar_alpha;
+//    CircleSeekBar circleSeekBar_brightness;
+//    CircleSeekBar circleSeekBar_alpha;
+    CircularSeekBar circleSeekBar_brightness;
+    CircularSeekBar circleSeekBar_alpha;
     ColorSeekBar colorSeekBar;
     Switch aSwitch;
     AppCompatButton appCompatButton;
@@ -67,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
         darkerNotification.updateStatus(isServiceRunning);
 
         view = findViewById(R.id.cm);
-        circleSeekBar_brightness = (CircleSeekBar) findViewById(R.id.cp_brightness_circleSeekBar);
-        circleSeekBar_alpha = (CircleSeekBar) findViewById(R.id.cp_alpha_circleSeekBar);
+
+        circleSeekBar_brightness = (CircularSeekBar) findViewById(R.id.cp_brightness_circleSeekBar);
+        circleSeekBar_alpha = (CircularSeekBar) findViewById(R.id.cp_alpha_circleSeekBar);
+
         colorSeekBar = (ColorSeekBar) findViewById(R.id.cp_colorSeekBar);
         aSwitch = (Switch) findViewById(R.id.cp_useColor_switch);
         appCompatButton = (AppCompatButton) findViewById(R.id.cm_toggle_button);
@@ -137,20 +141,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        circleSeekBar_brightness.setOnSeekBarChangeListener(new CircleSeekBar.OnSeekBarChangeListener() {
+        circleSeekBar_brightness.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
             @Override
-            public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
+            public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 if (isServiceRunning)
                     collectCurrentDarkerSettings(true);
             }
+
+            @Override
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {}
+
+            @Override
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {}
         });
 
-        circleSeekBar_alpha.setOnSeekBarChangeListener(new CircleSeekBar.OnSeekBarChangeListener() {
+        circleSeekBar_alpha.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
             @Override
-            public void onChanged(CircleSeekBar circleSeekBar, int i, int i1) {
+            public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 if (isServiceRunning)
                     collectCurrentDarkerSettings(true);
             }
+
+            @Override
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {}
+
+            @Override
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {}
         });
 
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
@@ -215,8 +231,8 @@ public class MainActivity extends AppCompatActivity {
                 isCurrentServiceRunning = true;
                 isServiceRunning = false;
             }
-            circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
-            circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
+            circleSeekBar_brightness.setProgress(currentDarkerSettings.getBrightness() * 100);
+            circleSeekBar_alpha.setProgress(currentDarkerSettings.getAlpha() * 100);
             if (isCurrentServiceRunning)
                 isServiceRunning = true;
         }
@@ -232,8 +248,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void collectCurrentDarkerSettings(boolean showHint) {
-        currentDarkerSettings.setBrightness(((float) circleSeekBar_brightness.getCurProcess()) / 100);
-        currentDarkerSettings.setAlpha(((float) circleSeekBar_alpha.getCurProcess()) / 100);
+        currentDarkerSettings.setBrightness(circleSeekBar_brightness.getProgress() / 100);
+        currentDarkerSettings.setAlpha(circleSeekBar_alpha.getProgress() / 100);
         currentDarkerSettings.setUseColor(aSwitch.isChecked());
         currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
@@ -249,8 +265,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void restoreLatestSettings() {
         currentDarkerSettings =  DarkerSettings.getCurrentSettings();
-        circleSeekBar_alpha.setCurProcess((int) (currentDarkerSettings.getAlpha() * 100));
-        circleSeekBar_brightness.setCurProcess((int) (currentDarkerSettings.getBrightness() * 100));
+        circleSeekBar_brightness.setProgress(currentDarkerSettings.getBrightness() * 100);
+        circleSeekBar_alpha.setProgress(currentDarkerSettings.getAlpha() * 100);
         if (currentDarkerSettings.isUseColor()) {
             aSwitch.setChecked(true);
             colorSeekBar.setVisibility(View.VISIBLE);
@@ -276,25 +292,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("完全退出")
-                    .setMessage("将关闭滤镜并完全退出应用")
-                    .setPositiveButton("完全退出", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            doCleanBeforeExit();
-                            System.exit(0);
-                        }
-                    })
-                    .setNegativeButton("后台运行", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            moveTaskToBack(true);
-                        }
-                    })
-                    .show();
-        }
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+            moveTaskToBack(true);
         return super.onKeyDown(keyCode, event);
     }
 

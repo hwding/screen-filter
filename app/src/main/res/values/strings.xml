@@ -13,7 +13,7 @@
     <string name="feedback">提供意见与建议</string>
     <string name="about">关于</string>
     <string name="positive">确定</string>
-    <string name="brief_introduction">\"可定制的轻量级屏幕滤镜\"</string>
+    <string name="brief_introduction">可定制的轻量级屏幕滤镜</string>
     <string name="gitHub_src_address">https://github.com/hwding/screen-filter/tree/master/app/src/main</string>
     <string name="source_code">源码:&#160;</string>
     <string name="update_log">日志:&#160;</string>
@@ -22,6 +22,6 @@
     <!-- Licenses -->
     <string name="ColorSeekBar_title">ColorSeekBar</string>
     <string name="ColorSeekBar_license">DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nVersion 2, December 2004\nCopyright © 2004 Leon Fu [rtugeek@gmail.com]\nEveryone is permitted to copy and distribute verbatim or modified\ncopies of this license document, and changing it is allowed as long as the name is changed.\nDO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\nTERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n0. You just DO WHAT THE FUCK YOU WANT TO.</string>
-    <string name="CircleSeekBar_title">CircleSeekBar</string>
-    <string name="CircleSeekBar_license">PGSL\nplease give me star license</string>
+    <string name="CircleSeekBar_title">CircularSeekBar</string>
+    <string name="CircleSeekBar_license">Apache License 2.0</string>
 </resources>

@@ -31,20 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brightness"/>
-        <io.feeeei.circleseekbar.CircleSeekBar
+
+        <me.tankery.lib.circularseekbar.CircularSeekBar
             android:id="@+id/cp_brightness_circleSeekBar"
-            app:wheel_cur_process="0"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:wheel_max_process="100"
-            app:wheel_reached_color="@color/text_transparent_gray"
-            app:wheel_unreached_color="@color/text_transparent_more_gray"
-            app:wheel_reached_width="10dp"
-            app:wheel_unreached_width="10dp"
-            app:wheel_can_touch="true"
-            app:wheel_pointer_radius="10dp" />
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            app:cs_max="100"
+            app:cs_start_angle="-220"
+            app:cs_end_angle="40"
+            app:cs_circle_style="round"
+            app:cs_circle_stroke_width="10dp"
+            app:cs_pointer_stroke_width="20dp" />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,20 +64,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/transparency"/>
-        <io.feeeei.circleseekbar.CircleSeekBar
+
+        <me.tankery.lib.circularseekbar.CircularSeekBar
             android:id="@+id/cp_alpha_circleSeekBar"
-            app:wheel_cur_process="128"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:wheel_max_process="80"
-            app:wheel_reached_color="@color/text_transparent_gray"
-            app:wheel_unreached_color="@color/text_transparent_more_gray"
-            app:wheel_reached_width="10dp"
-            app:wheel_unreached_width="10dp"
-            app:wheel_can_touch="true"
-            app:wheel_pointer_radius="10dp" />
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            app:cs_max="80"
+            app:cs_start_angle="-220"
+            app:cs_end_angle="40"
+            app:cs_circle_style="round"
+            app:cs_circle_stroke_width="10dp"
+            app:cs_pointer_stroke_width="20dp" />
     </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -100,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_color"/>
-        <Switch
+         <Switch
             android:id="@+id/cp_useColor_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
