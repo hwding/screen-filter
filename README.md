@@ -5,17 +5,20 @@
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)
 
 ## UPDATE LOG
+#####2016-08-23
+  - update libraries
+
 #####2016-08-13
   - set fullscreen flag for screen filter
 
 #####2016-08-09
-  - remove slpash page to simplify apk
+  - remove splash page to simplify apk
   - remove useless codes
   - fix the bug that screen will dim and lock down even when you are watch videos after activating screen filter, so the 'keep screen on' function is removed
   - improve UI
 
 #####2016-08-07
-  - improve service persistance
+  - improve service persistence
   - change icon
 
 #####2016-08-06
@@ -32,7 +35,7 @@
   - adjust UI lightly
 
 #####2016-08-03
-  - new feature: now you can (/de)activate screen filter through tapping the notifacation, you can also jump directly onto control panel with our new notification
+  - new feature: now you can (/de)activate screen filter through tapping the notification, you can also jump directly onto control panel with our new notification
 
 #####2016-08-01
   - redesign UI and interaction
@@ -45,11 +48,11 @@
 
 #####2016-07-28
   - update a library to fix the bug that seekBar's pointer won't change its position along with its value
-  - fix a bug that screen filter will be activated unexpectedly when 'resore default settings' button is pressed
+  - fix a bug that screen filter will be activated unexpectedly when 'restore default settings' button is pressed
 
 #####2016-07-27
   - new feature: now you can adjust the screen filter dynamically as long as it is activated
-  - fix a bug in 'keep screeen on' function
+  - fix a bug in 'keep screen on' function
   - fix a bug that 'restore default settings' function is not working when screen filter is activated
   - change background
 
