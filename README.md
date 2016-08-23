@@ -9,6 +9,8 @@
 ## UPDATE LOG
 #####2016-08-23
   - update libraries
+  - fix the problem of over scrolling
+  - change a third party library for circular seekBar
 
 #####2016-08-13
   - set fullscreen flag for screen filter
