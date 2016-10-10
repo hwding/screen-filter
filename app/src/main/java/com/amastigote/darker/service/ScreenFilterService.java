@@ -27,7 +27,7 @@ public class ScreenFilterService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        flags = START_STICKY;
+        flags = Service.START_FLAG_REDELIVERY;
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -47,11 +47,12 @@ public class ScreenFilterService extends Service{
 
     @SuppressWarnings(value = "all")
     private void createScreenFilter() {
+        WindowManager windowManager_tmp = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         layoutParams = new WindowManager.LayoutParams();
         windowManager = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
         layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
-        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.width = windowManager_tmp.getDefaultDisplay().getHeight();
+        layoutParams.height = windowManager_tmp.getDefaultDisplay().getHeight();
         layoutParams.format = PixelFormat.TRANSLUCENT;
 
         LayoutInflater layoutInflater = LayoutInflater.from(getApplication());
