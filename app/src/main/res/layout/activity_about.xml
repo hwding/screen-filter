@@ -10,12 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.AboutActivity"
     android:orientation="vertical">
+
     <ImageView
-        android:layout_marginTop="20dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +27,7 @@
         android:textSize="18sp"
         android:layout_marginTop="20dp"/>
     <TextView
+        android:textSize="10sp"
         android:id="@+id/aa_versionCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,16 +70,28 @@
             android:text="@string/gitHub_readme_address"
             android:autoLink="all"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:gravity="bottom"
+        android:layout_weight="100"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
+        android:layout_alignParentStart="true"
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/aa_licenseButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="@string/license"/>
+
     <Button
+        android:layout_alignParentEnd="true"
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/aa_feedBackButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/feedback"/>
+    </RelativeLayout>
 
 </LinearLayout>

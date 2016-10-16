@@ -1,12 +1,18 @@
-# screen-filter
+# screen filter
 **dims your screen further to protect eyes in complete darkness**
-  
+
 [![License](https://img.shields.io/badge/LICENSE-GPL%203-blue.svg?style=flat-square)](https://github.com/hwding/make-it-darker/blob/master/LICENSE)
 [![Platform](https://img.shields.io/badge/PLATFORM-Android-red.svg?style=flat-square)](https://www.android.com/)  
 [![Download](https://img.shields.io/badge/DOWNLOAD-coolapk-green.svg?style=flat-square)](http://www.coolapk.com/apk/com.amastigote.darker)
 [![Download](https://img.shields.io/badge/DOWNLOAD-wandoujia-green.svg?style=flat-square)](http://www.wandoujia.com/apps/com.amastigote.darker)
 
 ## UPDATE LOG
+##### 2016-10-16
+  - add auto brightness option
+  - add brightness & alpha indicator
+  - optimize third party ColorSeekBar
+  - several UI improvements (layout, style, animation, etc.)
+
 ##### 2016-10-10
   - fix the problem that filter could not cover the whole screen after orientation
   - update google libraries

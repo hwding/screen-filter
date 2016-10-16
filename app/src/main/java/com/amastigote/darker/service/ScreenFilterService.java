@@ -1,5 +1,6 @@
 package com.amastigote.darker.service;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import com.amastigote.darker.R;
 import com.amastigote.darker.model.DarkerSettings;
 
 public class ScreenFilterService extends Service{
+    @SuppressLint("StaticFieldLeak")
     static LinearLayout linearLayout;
     static WindowManager.LayoutParams layoutParams;
     static WindowManager windowManager;
@@ -27,8 +29,7 @@ public class ScreenFilterService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        flags = Service.START_FLAG_REDELIVERY;
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
@@ -70,17 +71,25 @@ public class ScreenFilterService extends Service{
     }
 
     private static void updateThisSettings(DarkerSettings darkerSettings) {
-        layoutParams.screenBrightness = darkerSettings.getBrightness();
+        if (darkerSettings.isUseBrightness())
+            layoutParams.screenBrightness = darkerSettings.getBrightness();
+        else
+            layoutParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+
         layoutParams.alpha = darkerSettings.getAlpha();
+
         if (darkerSettings.isUseColor())
             linearLayout.setBackgroundColor(darkerSettings.getColor());
         else
             linearLayout.setBackgroundColor(Color.BLACK);
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+
+        layoutParams.flags =
+                  WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                | WindowManager.LayoutParams.FLAG_FULLSCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
     }
 
     public static void removeScreenFilter() {

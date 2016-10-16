@@ -44,8 +44,9 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
+                //noinspection SpellCheckingInspection
                 intent.setData(Uri.parse("mailto:m@amastigote.com"));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "feedback from ScreenFilter " + getVersionCode(AboutActivity.this));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback from ScreenFilter " + getVersionCode(AboutActivity.this));
                 startActivity(intent);
             }
         });

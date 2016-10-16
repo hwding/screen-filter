@@ -7,4 +7,17 @@
     <color name="text_transparent_more_gray">#529c9c9c</color>
     <color name="toggle_button_off">#700600</color>
     <color name="toggle_button_on">#00700b</color>
+    <color name="thumb_color">#4a89fe</color>
+    <array name="material_colors">
+        <item>#F44336</item>
+        <item>#9C27B0</item>
+        <item>#3F51B5</item>
+        <item>#03A9F4</item>
+        <item>#009688</item>
+        <item>#8BC34A</item>
+        <item>#FFEB3B</item>
+        <item>#FF9800</item>
+        <item>#795548</item>
+        <item>#607D8B</item>
+    </array>
 </resources>

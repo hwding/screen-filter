@@ -1,16 +1,19 @@
 package com.amastigote.darker.model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.WindowManager;
 
 public class DarkerSettings {
-    float brightness;
-    float alpha;
-    boolean useColor;
-    float colorBarPosition;
-    int color;
+    private float brightness;
+    private float alpha;
+    private boolean useColor;
+    private boolean useBrightness;
+    private float colorBarPosition;
+    private int color;
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context = null;
     private static SharedPreferences sharedPreferences_default = null;
     private static SharedPreferences sharedPreferences_current = null;
@@ -18,9 +21,10 @@ public class DarkerSettings {
     private static final String ALPHA = "ALPHA";
     private static final String COLOR_BAR_POSITION = "COLOR_BAR_POSITION";
     private static final String USE_COLOR = "USE_COLOR";
+    private static final String USE_BRIGHTNESS = "USE_BRIGHTNESS";
     private static final float ALPHA_DEFAULT = 0.4F;
     private static final float COLOR_BAR_POSITION_DEFAULT = 0.0F;
-    private static final boolean USE_COLOR_DEFAULT = false;
+    private static final boolean USE_STH_DEFAULT = false;
 
     public static void initializeContext(Context context) {
         DarkerSettings.context = context;
@@ -56,12 +60,15 @@ public class DarkerSettings {
         float thisColorBarPosition = sharedPreferences.getFloat(COLOR_BAR_POSITION,
                 COLOR_BAR_POSITION_DEFAULT);
         boolean thisUseColor = sharedPreferences.getBoolean(USE_COLOR,
-                USE_COLOR_DEFAULT);
+                USE_STH_DEFAULT);
+        boolean thisUseBrightness = sharedPreferences.getBoolean(USE_BRIGHTNESS,
+                USE_STH_DEFAULT);
 
         thisDarkerSettings.setBrightness(thisBrightness);
         thisDarkerSettings.setAlpha(thisAlpha);
         thisDarkerSettings.setColorBarPosition(thisColorBarPosition);
         thisDarkerSettings.setUseColor(thisUseColor);
+        thisDarkerSettings.setUseBrightness(thisUseBrightness);
 
         return thisDarkerSettings;
     }
@@ -106,11 +113,20 @@ public class DarkerSettings {
         this.color = color;
     }
 
+    public boolean isUseBrightness() {
+        return useBrightness;
+    }
+
+    public void setUseBrightness(boolean useBrightness) {
+        this.useBrightness = useBrightness;
+    }
+
     public void saveCurrentSettings() {
         SharedPreferences.Editor editor = sharedPreferences_current.edit();
         editor.putFloat(BRIGHTNESS, brightness);
         editor.putFloat(ALPHA, alpha);
         editor.putFloat(COLOR_BAR_POSITION, colorBarPosition);
+        editor.putBoolean(USE_BRIGHTNESS, useBrightness);
         editor.putBoolean(USE_COLOR, useColor);
         editor.apply();
     }

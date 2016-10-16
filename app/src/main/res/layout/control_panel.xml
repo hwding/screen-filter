@@ -1,121 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:layout_weight="30"
+    android:gravity="center_vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginEnd="50dp">
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/text_light_gray"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/shape_text_tag"
-            android:gravity="center_horizontal"
-            android:textSize="15sp"
-            android:layout_gravity="center_vertical|center_horizontal"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/brightness"/>
+            android:orientation="vertical"
+            android:layout_marginEnd="50dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/shape_text_tag">
 
-        <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/cp_brightness_circleSeekBar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            app:cs_max="100"
-            app:cs_start_angle="-220"
-            app:cs_end_angle="40"
-            app:cs_circle_style="round"
-            app:cs_circle_stroke_width="10dp"
-            app:cs_pointer_stroke_width="20dp" />
+                <TextView
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_light_gray"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingStart="7dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brightness"
+                    android:id="@+id/textView" />
 
-    </LinearLayout>
-    <LinearLayout
+                <Switch
+                    android:id="@+id/cp_useBrightness_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <me.tankery.lib.circularseekbar.CircularSeekBar
+                android:id="@+id/cp_brightness_circleSeekBar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                app:cs_max="100"
+                app:cs_start_angle="-220"
+                app:cs_end_angle="40"
+                app:cs_circle_style="round"
+                app:cs_circle_stroke_width="10dp"
+                app:cs_pointer_stroke_width="20dp" />
+                <TextView
+                    android:textColor="@color/thumb_color"
+                    android:textStyle="bold"
+                    android:id="@+id/cp_brightness_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/text_light_gray"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/shape_text_tag"
-            android:gravity="center_horizontal"
-            android:textSize="15sp"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/transparency"/>
 
-        <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/cp_alpha_circleSeekBar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="5dp"
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/text_light_gray"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:background="@drawable/shape_text_tag"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transparency"
+                android:id="@+id/textView2" />
+
+            <RelativeLayout
             android:layout_marginTop="10dp"
-            app:cs_max="80"
-            app:cs_start_angle="-220"
-            app:cs_end_angle="40"
-            app:cs_circle_style="round"
-            app:cs_circle_stroke_width="10dp"
-            app:cs_pointer_stroke_width="20dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/thumb_color"
+                android:textStyle="bold"
+                android:id="@+id/cp_alpha_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <me.tankery.lib.circularseekbar.CircularSeekBar
+                android:id="@+id/cp_alpha_circleSeekBar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+
+                app:cs_max="80"
+                app:cs_start_angle="-220"
+                app:cs_end_angle="40"
+                app:cs_circle_style="round"
+                app:cs_circle_stroke_width="10dp"
+                app:cs_pointer_stroke_width="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
     </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_text_tag">
         <TextView
             android:textStyle="bold"
-            android:layout_marginBottom="5dp"
             android:textColor="@color/text_light_gray"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@drawable/shape_text_tag"
+            android:paddingStart="7dp"
             android:gravity="center_horizontal"
             android:textSize="15sp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_horizontal|center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/filter_color"/>
-         <Switch
-            android:id="@+id/cp_useColor_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_filter"
-            android:textColor="@color/text_light_gray"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"/>
+
+            <Switch
+                android:id="@+id/cp_useColor_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="5dp"/>
+        </LinearLayout>
+
         <com.rtugeek.android.colorseekbar.ColorSeekBar
             android:visibility="invisible"
             android:id="@+id/cp_colorSeekBar"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:colors="@array/material_colors"
-            app:barHeight="5dp"
+            app:barHeight="10dp"
             app:thumbHeight="25dp" />
     </LinearLayout>
 </LinearLayout>
