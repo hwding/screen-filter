@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-    android:id="@+id/cm"
-    android:gravity="center_vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/activity_main" >
 
     <TextView
-        android:layout_weight="70"
-        android:gravity="center_vertical"
-        android:layout_marginTop="0dp"
-        android:lineSpacingMultiplier="1.1"
-        android:textColor="@color/text_light_gray"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_weight="70"
+        android:gravity="center_vertical"
+        android:lineSpacingMultiplier="1.1"
         android:text="@string/banner"
-        android:textSize="13sp"
-        android:id="@+id/textView3" />
+        android:textColor="@color/text_light_gray"
+        android:textSize="13sp" />
 
     <include
         layout="@layout/control_panel" />
@@ -37,12 +37,14 @@
         android:layout_weight="100">
 
     <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="bottom"
         android:id="@+id/cm_toggle_button"
-        android:textColor="@color/text_light_gray"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"/>
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:elevation="0dp"
+        android:textColor="@color/text_light_gray"
+        android:textStyle="bold"
+        tools:targetApi="lollipop" />
     </LinearLayout>
 </LinearLayout>

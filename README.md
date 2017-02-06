@@ -7,6 +7,13 @@
 [![Download](https://img.shields.io/badge/DOWNLOAD-wandoujia-green.svg?style=flat-square)](http://www.wandoujia.com/apps/com.amastigote.darker)
 
 ## UPDATE LOG
+##### 2017-02-06
+  - remove snack-bars
+  - optimize activity switching
+  - change logo
+  - update libraries
+  - several UI improvements (string, layout, etc.)
+
 ##### 2016-10-16
   - add auto brightness option
   - add brightness & alpha indicator

@@ -8,9 +8,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.amastigote.darker.R;
 
 public class AboutActivity extends AppCompatActivity {
@@ -18,10 +20,25 @@ public class AboutActivity extends AppCompatActivity {
     Button licenseButton;
     Button feedbackButton;
 
+    public static String getVersionCode(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_GIDS);
+            return packageInfo.versionName;
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        if (null != getSupportActionBar()) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         versionCodeTextView = (TextView) findViewById(R.id.aa_versionCode);
         licenseButton = (Button) findViewById(R.id.aa_licenseButton);
         feedbackButton = (Button) findViewById(R.id.aa_feedBackButton);
@@ -52,12 +69,10 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
-    public static String getVersionCode(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_GIDS);
-            return packageInfo.versionName;
-        } catch (Exception ignored) {}
-        return null;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 }

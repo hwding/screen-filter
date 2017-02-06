@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">屏幕滤镜</string>
-    <string name="banner">•&#160;黑暗 -> 启用默认滤镜可进一步降低亮度\n•&#160;日常 -> 启用暖色系滤镜可抗蓝光</string>
+    <string name="banner">•&#160;黑暗 -> 启用无色滤镜可进一步降低亮度\n•&#160;日常 -> 启用暖色系滤镜可抗蓝光</string>
     <string name="brightness">屏幕亮度</string>
     <string name="transparency">滤镜浓度</string>
     <string name="filter_color">滤镜颜色</string>
@@ -9,11 +9,11 @@
     <string name="is_on">滤镜已激活 ( •̀ᴗ•́)و</string>
     <string name="restore">重置</string>
     <string name="auto_brightness">自动</string>
-    <string name="license">开源许可</string>
-    <string name="feedback">反馈</string>
+    <string name="license">第三方开源许可</string>
+    <string name="feedback">邮件反馈</string>
     <string name="about">关于</string>
     <string name="positive">确定</string>
-    <string name="brief_introduction">可定制的轻量级屏幕滤镜</string>
+    <string name="brief_introduction">高度可定制的轻量级屏幕滤镜</string>
     <string name="gitHub_src_address">https://github.com/hwding/screen-filter/tree/master/app/src/main</string>
     <string name="source_code">源码:&#160;</string>
     <string name="update_log">日志:&#160;</string>

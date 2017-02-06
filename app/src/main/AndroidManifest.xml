@@ -9,9 +9,9 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:persistent="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
-        android:persistent="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <service
@@ -20,7 +20,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter android:priority="1000">
@@ -33,9 +32,8 @@
         <activity
             android:name=".activity.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat" />
 
     </application>
 </manifest>

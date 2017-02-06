@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +31,7 @@ import com.amastigote.darker.model.DarkerNotification;
 import com.amastigote.darker.model.DarkerSettings;
 import com.amastigote.darker.service.ScreenFilterService;
 import com.rtugeek.android.colorseekbar.ColorSeekBar;
+
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("  " + getResources().getString(R.string.app_name));
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        toolbar.setTitleMarginStart(100);
         toolbar.setLogo(R.mipmap.night_128);
         setSupportActionBar(toolbar);
 
@@ -95,11 +96,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!isServiceRunning) {
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
                     setButtonState(true);
                     isServiceRunning = true;
-                }
-                else {
+                } else {
                     ScreenFilterService.removeScreenFilter();
                     setButtonState(false);
                     isServiceRunning = false;
@@ -113,11 +113,10 @@ public class MainActivity extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
                 if (DarkerNotification.PRESS_BUTTON.equals(intent.getAction())) {
                     if (!isServiceRunning) {
-                        collectCurrentDarkerSettings(true);
+                        collectCurrentDarkerSettings();
                         setButtonState(true);
                         isServiceRunning = true;
-                    }
-                    else {
+                    } else {
                         ScreenFilterService.removeScreenFilter();
                         setButtonState(false);
                         isServiceRunning = false;
@@ -140,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     colorSeekBar.startAnimation(alphaAnimation_0);
                     colorSeekBar.setVisibility(View.VISIBLE);
                     currentDarkerSettings.setUseColor(true);
-                }
-                else {
+                } else {
                     AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
                     alphaAnimation_1.setDuration(300);
                     colorSeekBar.startAnimation(alphaAnimation_1);
@@ -149,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     currentDarkerSettings.setUseColor(false);
                 }
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
             }
         });
 
@@ -163,8 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     circleSeekBar_brightness.setVisibility(View.VISIBLE);
                     brightness_indicator.setText(String.valueOf((int) circleSeekBar_brightness.getProgress()));
                     currentDarkerSettings.setUseBrightness(true);
-                }
-                else {
+                } else {
                     AlphaAnimation alphaAnimation_1 = new AlphaAnimation(1, 0);
                     alphaAnimation_1.setDuration(300);
                     circleSeekBar_brightness.startAnimation(alphaAnimation_1);
@@ -173,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     currentDarkerSettings.setUseBrightness(true);
                 }
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
             }
         });
 
@@ -182,14 +179,16 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 brightness_indicator.setText(String.valueOf((int) progress));
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
             }
 
             @Override
-            public void onStopTrackingTouch(CircularSeekBar seekBar) {}
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {
+            }
 
             @Override
-            public void onStartTrackingTouch(CircularSeekBar seekBar) {}
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {
+            }
         });
 
         circleSeekBar_alpha.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
@@ -197,21 +196,23 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 alpha_indicator.setText(String.valueOf((int) progress));
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
             }
 
             @Override
-            public void onStopTrackingTouch(CircularSeekBar seekBar) {}
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {
+            }
 
             @Override
-            public void onStartTrackingTouch(CircularSeekBar seekBar) {}
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {
+            }
         });
 
         colorSeekBar.setOnColorChangeListener(new ColorSeekBar.OnColorChangeListener() {
             @Override
             public void onColorChangeListener(int i, int i1, int i2) {
                 if (isServiceRunning)
-                    collectCurrentDarkerSettings(true);
+                    collectCurrentDarkerSettings();
             }
         });
     }
@@ -237,9 +238,8 @@ public class MainActivity extends AppCompatActivity {
                             currentDarkerSettings = DarkerSettings.getDefaultSettings();
                             if (isServiceRunning) {
                                 doRestore();
-                                collectCurrentDarkerSettings(true);
-                            }
-                            else
+                                collectCurrentDarkerSettings();
+                            } else
                                 doRestore();
                         }
                     })
@@ -265,8 +265,7 @@ public class MainActivity extends AppCompatActivity {
             });
             valueAnimator.start();
             appCompatButton.setText(getResources().getString(R.string.is_on));
-        }
-        else {
+        } else {
             final ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(),
                     ContextCompat.getColor(this, R.color.toggle_button_on),
                     ContextCompat.getColor(this, R.color.toggle_button_off));
@@ -316,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
         invalidateOptionsMenu();
     }
 
-    private void collectCurrentDarkerSettings(boolean showHint) {
+    private void collectCurrentDarkerSettings() {
         currentDarkerSettings.setBrightness(circleSeekBar_brightness.getProgress() / 100);
         currentDarkerSettings.setAlpha(circleSeekBar_alpha.getProgress() / 100);
         currentDarkerSettings.setUseColor(aSwitch.isChecked());
@@ -324,17 +323,18 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
         currentDarkerSettings.saveCurrentSettings();
-        if (showHint)
-            Snackbar.make(view, "偏好配置已保存", Snackbar.LENGTH_LONG).show();
         if (isServiceRunning)
             ScreenFilterService.updateScreenFilter(currentDarkerSettings);
         else {
-            ScreenFilterService.activateScreenFilter(currentDarkerSettings);
+            try {
+                ScreenFilterService.activateScreenFilter(currentDarkerSettings);
+            } catch (IllegalStateException ignored) {
+            }
         }
     }
 
     private void restoreLatestSettings() {
-        currentDarkerSettings =  DarkerSettings.getCurrentSettings();
+        currentDarkerSettings = DarkerSettings.getCurrentSettings();
         circleSeekBar_brightness.setProgress(currentDarkerSettings.getBrightness() * 100);
         circleSeekBar_alpha.setProgress(currentDarkerSettings.getAlpha() * 100);
         brightness_indicator.setText(String.valueOf((int) circleSeekBar_brightness.getProgress()));
@@ -342,16 +342,14 @@ public class MainActivity extends AppCompatActivity {
         if (currentDarkerSettings.isUseColor()) {
             aSwitch.setChecked(true);
             colorSeekBar.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             aSwitch.setChecked(false);
             colorSeekBar.setVisibility(View.INVISIBLE);
         }
         if (currentDarkerSettings.isUseBrightness()) {
             bSwitch.setChecked(true);
             circleSeekBar_brightness.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             bSwitch.setChecked(false);
             circleSeekBar_brightness.setVisibility(View.INVISIBLE);
             brightness_indicator.setText(R.string.auto_brightness);
@@ -377,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK)
+        if (keyCode == KeyEvent.KEYCODE_BACK)
             moveTaskToBack(true);
         return super.onKeyDown(keyCode, event);
     }
@@ -388,11 +386,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
                 intent.setData(Uri.parse("package:" + getPackageName()));
                 startActivityForResult(intent, 0);
-            }
-            else
+            } else
                 prepareForService();
-        }
-        else
+        } else
             prepareForService();
     }
 
@@ -406,6 +402,7 @@ public class MainActivity extends AppCompatActivity {
             darkerNotification.removeNotification();
             unregisterReceiver(broadcastReceiver);
             stopService(intent);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 }
