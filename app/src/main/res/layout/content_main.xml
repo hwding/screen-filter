@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cm"
@@ -13,7 +12,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.MainActivity"
-    tools:showIn="@layout/activity_main" >
+    tools:showIn="@layout/activity_main">
 
     <TextView
         android:id="@+id/textView3"
@@ -28,23 +27,22 @@
         android:textColor="@color/text_light_gray"
         android:textSize="13sp" />
 
-    <include
-        layout="@layout/control_panel" />
+    <include layout="@layout/control_panel" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="100">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/cm_toggle_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="25dp"
-        android:elevation="0dp"
-        android:textColor="@color/text_light_gray"
-        android:textStyle="bold"
-        tools:targetApi="lollipop" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/cm_toggle_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="25dp"
+            android:elevation="0dp"
+            android:textColor="@color/text_light_gray"
+            android:textStyle="bold"
+            tools:targetApi="lollipop" />
     </LinearLayout>
 </LinearLayout>

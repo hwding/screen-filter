@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.amastigote.darker">
 
@@ -14,8 +13,7 @@
         android:theme="@style/Theme.AppCompat"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <service
-            android:name=".service.ScreenFilterService" />
+        <service android:name=".service.ScreenFilterService" />
 
         <activity
             android:name=".activity.MainActivity"
@@ -24,6 +22,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

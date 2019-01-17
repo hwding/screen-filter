@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+
 import com.amastigote.darker.R;
 import com.amastigote.darker.activity.MainActivity;
 
@@ -42,8 +43,7 @@ public class DarkerNotification {
         if (isRunning) {
             builder.setContentTitle(IS_ON)
                     .setContentText(CLICK_TO_DEACTIVATE);
-        }
-        else {
+        } else {
             builder.setContentTitle(IS_OFF)
                     .setContentText(CLICK_TO_ACTIVATE);
         }

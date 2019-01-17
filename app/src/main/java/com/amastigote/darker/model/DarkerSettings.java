@@ -41,7 +41,8 @@ public class DarkerSettings {
                         Context.MODE_PRIVATE);
     }
 
-    public DarkerSettings() {}
+    public DarkerSettings() {
+    }
 
     public static DarkerSettings getDefaultSettings() {
         return getSettings(sharedPreferences_default);

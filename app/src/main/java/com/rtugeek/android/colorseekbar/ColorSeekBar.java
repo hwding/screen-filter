@@ -19,9 +19,9 @@ import com.amastigote.darker.R;
 @SuppressWarnings(value = "all")
 public class ColorSeekBar extends View {
     private int mBackgroundColor = 0xffffffff;
-    private int[] mColors = new int[] {0xFF000000,0xFF9900FF, 0xFF0000FF, 0xFF00FF00,0xFF00FFFF, 0xFFFF0000,0xFFFF00FF,0xFFFF6600, 0xFFFFFF00, 0xFFFFFFFF,0xFF000000};
-    private int c0,c1, mAlpha, mRed, mGreen, mBlue;
-    private float x,y;
+    private int[] mColors = new int[]{0xFF000000, 0xFF9900FF, 0xFF0000FF, 0xFF00FF00, 0xFF00FFFF, 0xFFFF0000, 0xFFFF00FF, 0xFFFF6600, 0xFFFFFF00, 0xFFFFFFFF, 0xFF000000};
+    private int c0, c1, mAlpha, mRed, mGreen, mBlue;
+    private float x, y;
     private OnColorChangeListener mOnColorChangeLister;
     private Context mContext;
     private boolean mIsShowAlphaBar = false;
@@ -47,6 +47,7 @@ public class ColorSeekBar extends View {
     private int mPaddingSize;
     private int mViewWidth;
     private int mViewHeight;
+
     public ColorSeekBar(Context context) {
         super(context);
         init(context, null, 0, 0);
@@ -57,7 +58,7 @@ public class ColorSeekBar extends View {
         init(context, attrs, 0, 0);
     }
 
-    public ColorSeekBar(Context context, AttributeSet attrs, int defStyleAttr){
+    public ColorSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, 0);
     }
@@ -68,7 +69,7 @@ public class ColorSeekBar extends View {
 //        init(context, attrs, defStyleAttr, defStyleRes);
 //    }
 
-    protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
+    protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         applyStyle(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -83,33 +84,32 @@ public class ColorSeekBar extends View {
         mViewHeight = heightMeasureSpec;
 
         int speMode = MeasureSpec.getMode(heightMeasureSpec);
-        if(speMode == MeasureSpec.AT_MOST || speMode == MeasureSpec.UNSPECIFIED){
-            if(mIsShowAlphaBar){
-                setMeasuredDimension(mViewWidth,mThumbHeight * 2 +  mBarHeight * 2  + mBarMargin);
-            }else{
-                setMeasuredDimension(mViewWidth,mThumbHeight + mBarHeight);
+        if (speMode == MeasureSpec.AT_MOST || speMode == MeasureSpec.UNSPECIFIED) {
+            if (mIsShowAlphaBar) {
+                setMeasuredDimension(mViewWidth, mThumbHeight * 2 + mBarHeight * 2 + mBarMargin);
+            } else {
+                setMeasuredDimension(mViewWidth, mThumbHeight + mBarHeight);
             }
         }
     }
 
 
-
-    protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
+    protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         mContext = context;
         //get attributes
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ColorSeekBar, defStyleAttr, defStyleRes);
         int colorsId = a.getResourceId(R.styleable.ColorSeekBar_colors, 0);
-        mMaxValue = a.getInteger(R.styleable.ColorSeekBar_maxValue,100);
-        mColorBarValue = a.getInteger(R.styleable.ColorSeekBar_colorBarValue,0);
-        mAlphaBarValue = a.getInteger(R.styleable.ColorSeekBar_alphaBarValue,0);
+        mMaxValue = a.getInteger(R.styleable.ColorSeekBar_maxValue, 100);
+        mColorBarValue = a.getInteger(R.styleable.ColorSeekBar_colorBarValue, 0);
+        mAlphaBarValue = a.getInteger(R.styleable.ColorSeekBar_alphaBarValue, 0);
         mIsShowAlphaBar = a.getBoolean(R.styleable.ColorSeekBar_showAlphaBar, false);
         mBackgroundColor = a.getColor(R.styleable.ColorSeekBar_bgColor, Color.TRANSPARENT);
-        mBarHeight = (int)a.getDimension(R.styleable.ColorSeekBar_barHeight,(float)dp2px(2));
-        mThumbHeight = (int)a.getDimension(R.styleable.ColorSeekBar_thumbHeight,(float)dp2px(30));
-        mBarMargin = (int)a.getDimension(R.styleable.ColorSeekBar_barMargin,(float)dp2px(5));
+        mBarHeight = (int) a.getDimension(R.styleable.ColorSeekBar_barHeight, (float) dp2px(2));
+        mThumbHeight = (int) a.getDimension(R.styleable.ColorSeekBar_thumbHeight, (float) dp2px(30));
+        mBarMargin = (int) a.getDimension(R.styleable.ColorSeekBar_barMargin, (float) dp2px(5));
         a.recycle();
 
-        if(colorsId != 0) mColors = getColorsById(colorsId);
+        if (colorsId != 0) mColors = getColorsById(colorsId);
 
         setBackgroundColor(mBackgroundColor);
 
@@ -121,19 +121,19 @@ public class ColorSeekBar extends View {
 
     }
 
-    private int[] getColorsById(int id){
-        if(isInEditMode()){
-            String[] s=mContext.getResources().getStringArray(id);
+    private int[] getColorsById(int id) {
+        if (isInEditMode()) {
+            String[] s = mContext.getResources().getStringArray(id);
             int[] colors = new int[s.length];
-            for (int j = 0; j < s.length; j++){
+            for (int j = 0; j < s.length; j++) {
                 colors[j] = Color.parseColor(s[j]);
             }
             return colors;
-        }else{
-            TypedArray typedArray=mContext.getResources().obtainTypedArray(id);
+        } else {
+            TypedArray typedArray = mContext.getResources().obtainTypedArray(id);
             int[] colors = new int[typedArray.length()];
-            for (int j = 0; j < typedArray.length(); j++){
-                colors[j] = typedArray.getColor(j,Color.BLACK);
+            for (int j = 0; j < typedArray.length(); j++) {
+                colors[j] = typedArray.getColor(j, Color.BLACK);
             }
             typedArray.recycle();
             return colors;
@@ -149,7 +149,7 @@ public class ColorSeekBar extends View {
 
         //init size
         mThumbRadius = mThumbHeight / 2;
-        mPaddingSize = (int)mThumbRadius;
+        mPaddingSize = (int) mThumbRadius;
         mBarWidth = realRight - realLeft;
 
         //init rect
@@ -166,10 +166,9 @@ public class ColorSeekBar extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mTransparentBitmap = Bitmap.createBitmap(w,h, Bitmap.Config.ARGB_4444);
+        mTransparentBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_4444);
         mTransparentBitmap.eraseColor(Color.TRANSPARENT);
     }
-
 
 
 //    public ColorSeekBar(Context context, float x1, float x2) {
@@ -186,7 +185,7 @@ public class ColorSeekBar extends View {
         colorPaint.setColor(pickColor(colorPosition));
 //        int[] toAlpha=new int[]{Color.argb(255, mRed, mGreen, mBlue),Color.argb(0, mRed, mGreen, mBlue)};
         //clear
-        canvas.drawBitmap(mTransparentBitmap,0,0,null);
+        canvas.drawBitmap(mTransparentBitmap, 0, 0, null);
 
         //draw color bar
 //        canvas.drawRect(mColorRect, mColorRectPaint);
@@ -195,7 +194,7 @@ public class ColorSeekBar extends View {
         //draw color bar thumb
         float thumbX = colorPosition + realLeft;
         float thumbY = mColorRect.top + mColorRect.height() / 2;
-        canvas.drawCircle(thumbX,thumbY , mBarHeight, colorPaint);
+        canvas.drawCircle(thumbX, thumbY, mBarHeight, colorPaint);
 
 //        //draw color bar thumb radial gradient shader
 //        RadialGradient thumbShader  = new RadialGradient(thumbX,  thumbY,  mThumbRadius, toAlpha, null, Shader.TileMode.MIRROR);
@@ -239,34 +238,34 @@ public class ColorSeekBar extends View {
     public boolean onTouchEvent(MotionEvent event) {
         x = event.getX();
         y = event.getY();
-        switch(event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if(isOnBar(mColorRect, x, y)){
+                if (isOnBar(mColorRect, x, y)) {
                     mMovingColorBar = true;
-                }else if(mIsShowAlphaBar){
-                    if(isOnBar(mAlphaRect, x, y)){
+                } else if (mIsShowAlphaBar) {
+                    if (isOnBar(mAlphaRect, x, y)) {
                         mMovingAlphaBar = true;
                     }
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
                 getParent().requestDisallowInterceptTouchEvent(true);
-                if(mMovingColorBar){
+                if (mMovingColorBar) {
                     float value = (x - realLeft) / mBarWidth * mMaxValue;
-                    mColorBarValue =(int)value ;
+                    mColorBarValue = (int) value;
                     if (mColorBarValue < 0) mColorBarValue = 0;
                     if (mColorBarValue > mMaxValue) mColorBarValue = mMaxValue;
-                }else if(mIsShowAlphaBar){
-                    if(mMovingAlphaBar){
+                } else if (mIsShowAlphaBar) {
+                    if (mMovingAlphaBar) {
                         float value = (x - realLeft) / mBarWidth * 255;
-                        mAlphaBarValue = (int)value;
-                        if (mAlphaBarValue < 0 ) mAlphaBarValue = 0;
-                        if (mAlphaBarValue > 255 ) mAlphaBarValue = 255;
+                        mAlphaBarValue = (int) value;
+                        if (mAlphaBarValue < 0) mAlphaBarValue = 0;
+                        if (mAlphaBarValue > 255) mAlphaBarValue = 255;
                         setAlphaValue();
                     }
                 }
-                if(mOnColorChangeLister != null && (mMovingAlphaBar || mMovingColorBar))
-                    mOnColorChangeLister.onColorChangeListener(mColorBarValue, mAlphaBarValue,getColor());
+                if (mOnColorChangeLister != null && (mMovingAlphaBar || mMovingColorBar))
+                    mOnColorChangeLister.onColorChangeListener(mColorBarValue, mAlphaBarValue, getColor());
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
@@ -277,7 +276,7 @@ public class ColorSeekBar extends View {
         return true;
     }
 
-    private boolean isOnBar(Rect r, float x, float y){
+    private boolean isOnBar(Rect r, float x, float y) {
         return r.left - mThumbRadius < x && x < r.right + mThumbRadius && r.top - mThumbRadius < y && y < r.bottom + mThumbRadius;
     }
 
@@ -290,15 +289,15 @@ public class ColorSeekBar extends View {
             return mColors[mColors.length - 1];
 
         float colorPosition = unit * (mColors.length - 1);
-        int i = (int)colorPosition;
+        int i = (int) colorPosition;
         colorPosition -= i;
         c0 = mColors[i];
-        c1 = mColors[i+1];
+        c1 = mColors[i + 1];
 //         mAlpha = mix(Color.alpha(c0), Color.alpha(c1), colorPosition);
         mRed = mix(Color.red(c0), Color.red(c1), colorPosition);
         mGreen = mix(Color.green(c0), Color.green(c1), colorPosition);
         mBlue = mix(Color.blue(c0), Color.blue(c1), colorPosition);
-        return Color.rgb( mRed, mGreen, mBlue);
+        return Color.rgb(mRed, mGreen, mBlue);
     }
 
     private int mix(int start, int end, float position) {
@@ -306,8 +305,8 @@ public class ColorSeekBar extends View {
     }
 
     public int getColor() {
-        if(mIsShowAlphaBar) return Color.argb(mAlpha, mRed, mGreen, mBlue);
-        return Color.rgb( mRed, mGreen, mBlue);
+        if (mIsShowAlphaBar) return Color.argb(mAlpha, mRed, mGreen, mBlue);
+        return Color.rgb(mRed, mGreen, mBlue);
     }
 
 //
@@ -327,13 +326,13 @@ public class ColorSeekBar extends View {
     public interface OnColorChangeListener {
         /**
          * @param colorBarValue between 0-maxValue
-         * @param alphaValue between 0-255
-         * @param color return the color contains alpha value whether showAlphaBar is true or without alpha value
+         * @param alphaValue    between 0-255
+         * @param color         return the color contains alpha value whether showAlphaBar is true or without alpha value
          */
         void onColorChangeListener(int colorBarValue, int alphaValue, int color);
     }
 
-    public void setOnColorChangeListener(OnColorChangeListener onColorChangeListener){
+    public void setOnColorChangeListener(OnColorChangeListener onColorChangeListener) {
         this.mOnColorChangeLister = onColorChangeListener;
     }
 
@@ -419,7 +418,7 @@ public class ColorSeekBar extends View {
 //        invalidate();
 //    }
 
-    private void setAlphaValue(){
+    private void setAlphaValue() {
         mAlpha = 255 - mAlphaBarValue;
     }
 
@@ -461,11 +460,11 @@ public class ColorSeekBar extends View {
     public void setColorBarValue(int value) {
         this.mColorBarValue = value;
         invalidate();
-        if(mOnColorChangeLister != null)
-            mOnColorChangeLister.onColorChangeListener(mColorBarValue, mAlphaBarValue,getColor());
+        if (mOnColorChangeLister != null)
+            mOnColorChangeLister.onColorChangeListener(mColorBarValue, mAlphaBarValue, getColor());
     }
 
-//    /**
+    //    /**
 //     * set thumb's height by dpi
 //     * @param dp
 //     */

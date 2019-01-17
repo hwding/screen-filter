@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,50 +24,58 @@
         android:text="@string/app_name"
         android:layout_gravity="center_horizontal"
         android:textSize="18sp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp" />
+
     <TextView
         android:textSize="10sp"
         android:id="@+id/aa_versionCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/brief_introduction"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal" />
+
     <LinearLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/source_code"/>
+            android:text="@string/source_code" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gitHub_src_address"
-            android:autoLink="all"/>
+            android:autoLink="all" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/update_log"/>
+            android:text="@string/update_log" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gitHub_readme_address"
-            android:autoLink="all"/>
+            android:autoLink="all" />
     </LinearLayout>
 
     <RelativeLayout
@@ -77,21 +84,22 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <Button
-        android:layout_alignParentStart="true"
-        style="?android:attr/buttonBarButtonStyle"
-        android:id="@+id/aa_licenseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/license"/>
 
-    <Button
-        android:layout_alignParentEnd="true"
-        style="?android:attr/buttonBarButtonStyle"
-        android:id="@+id/aa_feedBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/feedback"/>
+        <Button
+            android:layout_alignParentStart="true"
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/aa_licenseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license" />
+
+        <Button
+            android:layout_alignParentEnd="true"
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/aa_feedBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feedback" />
     </RelativeLayout>
 
 </LinearLayout>

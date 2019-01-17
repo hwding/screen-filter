@@ -10,8 +10,8 @@
         <attr name="showAlphaBar" format="boolean" />
         <attr name="alphaBarValue" format="integer" />
         <attr name="colorBarValue" format="integer" />
-        <attr name="bgColor" format="color"/>
-        <attr name="barMargin" format="dimension"/>
-        <attr name="maxValue" format="integer"/>
+        <attr name="bgColor" format="color" />
+        <attr name="barMargin" format="dimension" />
+        <attr name="maxValue" format="integer" />
     </declare-styleable>
 </resources>
