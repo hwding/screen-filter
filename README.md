@@ -7,6 +7,10 @@
 [![Download](https://img.shields.io/badge/DOWNLOAD-wandoujia-green.svg?style=flat-square)](http://www.wandoujia.com/apps/com.amastigote.darker)
 
 ## UPDATE LOG
+##### 2019-01-17
+  - fix the problem that filter could not cover navigation bar
+  - update libraries
+
 ##### 2017-02-06
   - remove snack-bars
   - optimize activity switching

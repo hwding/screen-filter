@@ -10,6 +10,7 @@ public class DarkerSettings {
     private float alpha;
     private boolean useColor;
     private boolean useBrightness;
+    private boolean useBar;
     private float colorBarPosition;
     private int color;
 

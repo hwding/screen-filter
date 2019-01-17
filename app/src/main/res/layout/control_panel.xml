@@ -170,5 +170,6 @@
             app:barHeight="10dp"
             app:colors="@array/material_colors"
             app:thumbHeight="25dp" />
+
     </LinearLayout>
 </LinearLayout>
