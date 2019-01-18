@@ -4,6 +4,7 @@
     <string name="brightness">屏幕亮度</string>
     <string name="transparency">滤镜浓度</string>
     <string name="filter_color">滤镜颜色</string>
+    <string name="filter_bar">遮挡导航栏</string>
     <string name="keep_screen_on">屏幕常亮</string>
     <string name="is_off">滤镜未激活 (˘•_•˘)</string>
     <string name="is_on">滤镜已激活 ( •̀ᴗ•́)و</string>

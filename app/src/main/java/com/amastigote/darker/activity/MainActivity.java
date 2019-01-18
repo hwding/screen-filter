@@ -2,6 +2,7 @@ package com.amastigote.darker.activity;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
@@ -249,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("RestrictedApi")
     private void setButtonState(boolean isChecked) {
         if (isChecked) {
             final ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(),
@@ -323,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
         currentDarkerSettings.setColorBarPosition(colorSeekBar.getColorPosition());
         currentDarkerSettings.setColor(colorSeekBar.getColor());
         currentDarkerSettings.saveCurrentSettings();
+
         if (isServiceRunning)
             ScreenFilterService.updateScreenFilter(currentDarkerSettings);
         else {
@@ -394,6 +399,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void prepareForService() {
         intent = new Intent(getApplicationContext(), ScreenFilterService.class);
+        /*Display display = getWindowManager().getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
+        intent.putExtra("height",point.y);*/
         startService(intent);
     }
 

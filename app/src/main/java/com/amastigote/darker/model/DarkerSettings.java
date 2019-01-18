@@ -10,6 +10,7 @@ public class DarkerSettings {
     private float alpha;
     private boolean useColor;
     private boolean useBrightness;
+    private boolean useBar;
     private float colorBarPosition;
     private int color;
 
@@ -40,7 +41,8 @@ public class DarkerSettings {
                         Context.MODE_PRIVATE);
     }
 
-    public DarkerSettings() {}
+    public DarkerSettings() {
+    }
 
     public static DarkerSettings getDefaultSettings() {
         return getSettings(sharedPreferences_default);

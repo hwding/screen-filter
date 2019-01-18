@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple
-    xmlns:tools="http://schemas.android.com/tools"
+<ripple xmlns:tools="http://schemas.android.com/tools"
     android:color="@color/text_transparent_more_gray"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:targetApi="lollipop">
     <item>
-        <selector
-            xmlns:android="http://schemas.android.com/apk/res/android">
+        <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
             <item
                 android:state_checked="true"
