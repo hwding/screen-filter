@@ -7,6 +7,10 @@
 [![Download](https://img.shields.io/badge/DOWNLOAD-wandoujia-green.svg?style=flat-square)](http://www.wandoujia.com/apps/com.amastigote.darker)
 
 ## UPDATE LOG
+
+##### 2019-01-23
+  - fix the problem that filter could not cover the whole screen after orientation
+
 ##### 2019-01-17
   - fix the problem that filter could not cover navigation bar
   - update libraries
