@@ -28,12 +28,11 @@ public class ScreenFilterService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        createScreenFilter();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        createScreenFilter();
         return START_STICKY;
     }
 
@@ -62,7 +61,7 @@ public class ScreenFilterService extends Service {
         int temp = getNavigationBarHeight(getApplicationContext());
         DisplayMetrics metrics = new DisplayMetrics();
         windowManager_tmp.getDefaultDisplay().getRealMetrics(metrics);
-        layoutParams.width = metrics.widthPixels;
+        layoutParams.width = metrics.heightPixels + temp;
         layoutParams.height = metrics.heightPixels + temp;
 
         layoutParams.format = PixelFormat.TRANSLUCENT;
